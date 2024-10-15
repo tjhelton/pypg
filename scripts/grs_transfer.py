@@ -24,7 +24,7 @@ def list_all_grs():
 
     return all_grs
 
-def get_grs(grsId):
+def get_grs(grs_id):
     conn = http.client.HTTPSConnection('api.safetyculture.io')
 
     headers = {
@@ -32,7 +32,7 @@ def get_grs(grsId):
         'Authorization': f'Bearer {origin_token}'
     }
 
-    conn.request('GET', f'/response_sets/{grsId}', headers=headers)
+    conn.request('GET', f'/response_sets/{grs_id}', headers=headers)
 
     res = conn.getresponse()
     raw = res.read().decode('utf-8')
