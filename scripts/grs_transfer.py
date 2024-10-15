@@ -1,15 +1,15 @@
 import http.client
 import json
 
-origin_token = 'token_here'
-destination_token = 'token_here'
+ORIGIN = 'token_here'
+DESTINATION = 'token_here'
 
 def list_all_grs():
     conn = http.client.HTTPSConnection('api.safetyculture.io')
 
     headers = {
         'accept': 'application/json',
-        'Authorization': f'Bearer {origin_token}'
+        'Authorization': f'Bearer {ORIGIN}'
     }
 
     conn.request('GET', '/response_sets/v2', headers=headers)
@@ -29,7 +29,7 @@ def get_grs(grs_id):
 
     headers = {
         'accept': 'application/json',
-        'Authorization': f'Bearer {origin_token}'
+        'Authorization': f'Bearer {ORIGIN}'
     }
 
     conn.request('GET', f'/response_sets/{grs_id}', headers=headers)
@@ -50,7 +50,7 @@ def create_grs(responses, name):
     headers = {
         'accept': 'application/json',
         'content-type': 'application/json',
-        'Authorization': f'Bearer {destination_token}'
+        'Authorization': f'Bearer {DESTINATION}'
     }
 
     payload = {
