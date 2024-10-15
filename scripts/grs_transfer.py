@@ -1,9 +1,10 @@
-import http.client, json, urllib
+import http.client
+import json
 
-origin_token = 'd59b7d50558b7539fc8d6ecaa9a2a213a5843987c4d240eb127b0ef0a2dcf158'
-destination_token = '3bafd37fcd1fa5c1bd6156c6342075b9e4c8240ea9c9d448c807b6ef0e0faf12'
+origin_token = 'token_here'
+destination_token = 'token_here'
 
-def listAllGrs():
+def list_all_grs():
     conn = http.client.HTTPSConnection('api.safetyculture.io')
 
     headers = {
@@ -17,14 +18,13 @@ def listAllGrs():
     raw = res.read().decode('utf-8')
     parsed = json.loads(raw)
 
-    rawGrs = parsed.get('response_sets', [])
+    raw_grs = parsed.get('response_sets', [])
 
-    allGrs = [grs['responseset_id'] for grs in rawGrs]
+    all_grs = [grs['responseset_id'] for grs in raw_grs]
 
-    return allGrs
+    return all_grs
 
-
-def getGrs(grsId):
+def get_grs(grsId):
     conn = http.client.HTTPSConnection('api.safetyculture.io')
 
     headers = {
@@ -38,14 +38,13 @@ def getGrs(grsId):
     raw = res.read().decode('utf-8')
     parsed = json.loads(raw)
 
-    resRaw = parsed.get('responses')
-    responses = [{'label': grs['label'], 'short_label': grs['label'][:19]} for grs in resRaw]
+    res_raw = parsed.get('responses')
+    responses = [{'label': grs['label'], 'short_label': grs['label'][:19]} for grs in res_raw]
     name = parsed.get('name')
 
     return responses, name
 
-
-def createGrs(responses, name):
+def create_grs(responses, name):
     conn = http.client.HTTPSConnection('api.safetyculture.io')
 
     headers = {
@@ -59,30 +58,26 @@ def createGrs(responses, name):
         'responses': responses
     }
 
-    Spayload = json.dumps(payload)
+    s_payload = json.dumps(payload)
 
-    conn.request('POST', '/response_sets', Spayload, headers=headers)
+    conn.request('POST', '/response_sets', s_payload, headers=headers)
 
     res = conn.getresponse()
     raw = res.read().decode('utf-8')
     parsed = json.loads(raw)
 
-    newGrsId = parsed.get('responseset_id')
-    newGrsName = parsed.get('name')
+    new_grs_id = parsed.get('responseset_id')
+    new_grs_name = parsed.get('name')
 
-    print(newGrsId, newGrsName)
+    return new_grs_id, new_grs_name
 
-    return newGrsId, newGrsName
+def process_transfer():
+    all_grs = list_all_grs()
 
-
-def processTransfer():
-    allGrs = listAllGrs()
-
-    for grs in allGrs:
-        rs = getGrs(grs)
+    for grs in all_grs:
+        rs = get_grs(grs)
         responses = rs[0]
         name = rs[1]
-        createGrs(responses, name)
+        create_grs(responses, name)
 
-
-processTransfer()
+process_transfer()
