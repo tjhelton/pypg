@@ -1,8 +1,9 @@
-import http.client, json, urllib
+import http.client
+import json
 
 bToken = '3bafd37fcd1fa5c1bd6156c6342075b9e4c8240ea9c9d448c807b6ef0e0faf12'
 
-def feedItems():
+def feed_items():
     conn = http.client.HTTPSConnection('api.safetyculture.io')
 
     headers = {
@@ -16,10 +17,10 @@ def feedItems():
     raw = res.read().decode('utf-8')
     parsed = json.loads(raw)
 
-    nextPage = parsed.get('metadata', {}).get('next_page', '')
+    next_page = parsed.get('metadata', {}).get('next_page', '')
     items = parsed.get('data', [])
 
-    while nextPage:
+    while next_page:
         conn = http.client.HTTPSConnection('api.safetyculture.io')
 
         headers = {
@@ -33,26 +34,26 @@ def feedItems():
         raw = res.read().decode('utf-8')
         parsed = json.loads(raw)
 
-        nextPage = parsed.get('metadata', {}).get('next_page', '')
-        dataToAdd = parsed.get('data', [])
-        items.extend(dataToAdd)
+        next_page = parsed.get('metadata', {}).get('next_page', '')
+        data_to_add = parsed.get('data', [])
+        items.extend(data_to_add)
 
-    siteRef = {}
+    site_ref = {}
     for row in items:
         if row['type'] == 'site':
             audit_id = row.get('audit_id', '')
             site = row.get('response', '')
             if site:
-                siteRef[audit_id] = site
+                site_ref[audit_id] = site
 
     for row in items:
         audit_id = row.get('audit_id', '')
-        if audit_id in siteRef:
-            row['site'] = siteRef[audit_id]
+        if audit_id in site_ref:
+            row['site'] = site_ref[audit_id]
 
     return items
 
-def feedInspections():
+def feed_inspections():
     conn = http.client.HTTPSConnection('api.safetyculture.io')
 
     headers = {
@@ -66,7 +67,7 @@ def feedInspections():
     raw = res.read().decode('utf-8')
     parsed = json.loads(raw)
 
-    nextPage = parsed.get('metadata', {}).get('next_page', '')
+    next_page = parsed.get('metadata', {}).get('next_page', '')
     inspections = parsed.get('data', [])
 
     while nextPage:
@@ -83,22 +84,22 @@ def feedInspections():
         raw = res.read().decode('utf-8')
         parsed = json.loads(raw)
 
-        nextPage = parsed.get('metadata', {}).get('next_page', '')
-        dataToAdd = parsed.get('data', [])
-        inspections.extend(dataToAdd)
+        next_page = parsed.get('metadata', {}).get('next_page', '')
+        data_to_add = parsed.get('data', [])
+        inspections.extend(data_to_add)
 
     return inspections
 
 def marry():
-    inspections = feedInspections()
-    items = feedItems()[:1]
+    inspections = feed_inspections()
+    items = feed_items()[:1]
 
-    completedRef = {row.get('id', ''): row.get('date_completed', '') for row in inspections}
+    completed_ref = {row.get('id', ''): row.get('date_completed', '') for row in inspections}
 
     for row in items:
         audit_id = row['audit_id']
-        if audit_id in completedRef:
-            row['completed'] = completedRef[audit_id][:10]
+        if audit_id in completed_ref:
+            row['completed'] = completed_ref[audit_id][:10]
 
     return items
 
