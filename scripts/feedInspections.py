@@ -1,7 +1,7 @@
 import http.client
 import json
 
-bToken = '3bafd37fcd1fa5c1bd6156c6342075b9e4c8240ea9c9d448c807b6ef0e0faf12'
+BTOKEN = 'TOKEN'
 
 def feed_items():
     conn = http.client.HTTPSConnection('api.safetyculture.io')
@@ -28,7 +28,7 @@ def feed_items():
             'Authorization': f'Bearer {bToken}'
         }
 
-        conn.request('GET', nextPage, headers=headers)
+        conn.request('GET', next_page, headers=headers)
 
         res = conn.getresponse()
         raw = res.read().decode('utf-8')
@@ -70,7 +70,7 @@ def feed_inspections():
     next_page = parsed.get('metadata', {}).get('next_page', '')
     inspections = parsed.get('data', [])
 
-    while nextPage:
+    while next_page:
         conn = http.client.HTTPSConnection('api.safetyculture.io')
 
         headers = {
@@ -78,7 +78,7 @@ def feed_inspections():
             'Authorization': f'Bearer {bToken}'
         }
 
-        conn.request('GET', nextPage, headers=headers)
+        conn.request('GET', next_page, headers=headers)
 
         res = conn.getresponse()
         raw = res.read().decode('utf-8')
