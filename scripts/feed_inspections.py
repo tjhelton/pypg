@@ -8,7 +8,7 @@ def feed_items():
 
     headers = {
         'accept': 'application/json',
-        'Authorization': f'Bearer {bToken}'
+        'Authorization': f'Bearer {BTOKEN}'
     }
 
     conn.request('GET', '/feed/inspection_items?archived=false&completed=true&modified_after=2024-01-25T15%3A57%3A38.809Z', headers=headers)
@@ -25,7 +25,7 @@ def feed_items():
 
         headers = {
             'accept': 'application/json',
-            'Authorization': f'Bearer {bToken}'
+            'Authorization': f'Bearer {BTOKEN}'
         }
 
         conn.request('GET', next_page, headers=headers)
@@ -58,7 +58,7 @@ def feed_inspections():
 
     headers = {
         'accept': 'application/json',
-        'Authorization': f'Bearer {bToken}'
+        'Authorization': f'Bearer {BTOKEN}'
     }
 
     conn.request('GET', '/feed/inspections?archived=false&completed=true&modified_after=2024-01-25T15%3A57%3A38.809Z', headers=headers)
@@ -75,7 +75,7 @@ def feed_inspections():
 
         headers = {
             'accept': 'application/json',
-            'Authorization': f'Bearer {bToken}'
+            'Authorization': f'Bearer {BTOKEN}'
         }
 
         conn.request('GET', next_page, headers=headers)
