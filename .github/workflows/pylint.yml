@@ -11,7 +11,7 @@ on:
 
 jobs:
   pylint:
-    name: Lint Python Code
+    name: Pylint
     runs-on: ubuntu-latest
 
     steps:
