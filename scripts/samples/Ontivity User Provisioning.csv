@@ -1,0 +1,140 @@
+positionTitle,group,permission
+A&E Director,Management,Guest
+A&E Manager,Management,Guest
+"A&E Manager - Civil, Electrical, Mechanical",Management,Guest
+A&E Manager - Site Acquisition,Management,Guest
+A&E Manager - Structural,Management,Guest
+Account Manager,Management,Guest
+Accounting Manager,Management,Guest
+Administrative Assistant,All Users,Guest
+AP Coordinator,All Users,Guest
+AP Manager,Management,Guest
+Asset Manager,Management,Guest
+Assistant Project Manager,Management,Standard
+Billing Specialist,All Users,Guest
+Business Development Executive,Management,Guest
+Business Development Representative,Management,Guest
+CAD 1,All Users,Guest
+CAD Technician,All Users,Guest
+Chief Executive Officer,Management,Guest
+Chief Financial Officer,Management,Guest
+Chief Operations Officer,Management,Guest
+Civil Crew Foreman,All Users,Standard
+Civil Technician,All Users,Guest
+Construction Manager,Management,Standard
+Crane Operator,All Users,Standard
+DAS Crew Foreman,All Users,Standard
+DAS/Installation Foreman,All Users,Standard
+DAS/Installation Technician,All Users,Guest
+DAS/Small Cell Technician,All Users,Guest
+Design Manager,Management,Guest
+Design Manager - Civil,Management,Guest
+Director,Management,Guest
+Director of Accounting,Management,Guest
+Director of Administration,Management,Guest
+Director of Audit and Tax,Management,Guest
+Director of Business Development,Management,Guest
+Director of Business Operations,Management,Guest
+Director of Contract Management & Corporate Controls,Management,Guest
+Director of Finance,Management,Guest
+Director of Human Resources,Management,Guest
+Director of Information Solutions,Management,Guest
+Director of Marketing,Management,Guest
+Director of Project Controls,Management,Guest
+Division Manager,Management,Guest
+EH&S Manager,Management,Super Manager
+Electrical Apprentice,All Users,Guest
+Electrical Foreman,All Users,Standard
+Electrical Journeyman,All Users,Standard
+Electrician,All Users,Guest
+Employee Care Specialist,All Users,Guest
+Engineer I,All Users,Guest
+Engineer II,All Users,Guest
+"Engineer II, Team Lead - Field Services",All Users,Guest
+Executive Assistant,All Users,Guest
+Executive Contracting Manager,Management,Guest
+Fabrication Manager,All Users,Guest
+Fabrication Technician,All Users,Guest
+Fabrication Technician Apprentice,All Users,Guest
+Facility & Fleet Manager,Management,Guest
+Field Lead,All Users,Standard
+Field Manager,Management,Standard
+Field Safety Advisor,All Users,Super Manager
+Field Support Specialist,All Users,Standard
+Field Technician,All Users,Guest
+FSC Manager,Management,Super Manager
+General Counsel,Management,Guest
+Generator Technician,All Users,Guest
+HDD Operator,All Users,Guest
+HR Business Partner,All Users,Guest
+HR Generalist,Management,Standard
+HR Manager,Management,Standard
+HR Specialist,All Users,Guest
+Install Technician,All Users,Guest
+Integrator,All Users,Guest
+IT Manager,Management,Guest
+Journeyman Electrician Foreman,All Users,Standard
+Marketing Manager,Management,Guest
+Master Electrician,All Users,Standard
+Office Manager,Management,Standard
+Operations Coordinator,All Users,Guest
+OSP Fiber Foreman,All Users,Standard
+OSP Field Supervisor,All Users,Guest
+Parts Manager,All Users,Guest
+Payroll Coordinator,All Users,Guest
+Payroll Manager,Management,Guest
+PM Administrative Assistant,All Users,Guest
+PPCRN Maintenance Technician,All Users,Guest
+President,Management,Guest
+Program Manager,Management,Guest
+Project Controls Specialist,All Users,Guest
+Project Coordinator,All Users,Guest
+Project Manager,Management,Standard
+Project Manager - A&E,Management,Guest
+Project Manager Assistant,All Users,Standard
+Radio Technician,All Users,Guest
+Receptionist,All Users,Guest
+RF Engineer,All Users,Guest
+RF Technician,All Users,Guest
+Room Ready Foreman,All Users,Standard
+Room Ready Technician,All Users,Guest
+Safety Coordinator,All Users,Standard
+Safety Manager,Management,Super Manager
+Scoping Specialist,All Users,Guest
+Senior A&E Manager - Site Design,Management,Guest
+Senior Accountant,All Users,Guest
+Senior Construction Manager,Management,Standard
+Senior Generator Technician,All Users,Standard
+Senior Human Resources Specialist,All Users,Guest
+Senior Project Controls Manager,Management,Guest
+Senior Project Coordinator,All Users,Guest
+Senior Project Manager,Management,Guest
+Senior Radio Technician,All Users,Standard
+Senior Safety Manager,Management,Standard
+Site Development Lead,All Users,Guest
+Site Development Project Manager,Management,Guest
+Site Development Specialist,All Users,Guest
+Site Supervisor,All Users,Standard
+Small Cell Technician,All Users,Guest
+Splicing Technician,All Users,Guest
+Staff Accountant,All Users,Guest
+Talent Acquisition Specialist,All Users,Guest
+Tower Foreman,All Users,Standard
+Tower Technician,All Users,Guest
+Tower Technician Apprentice,All Users,Guest
+Tower Technician II,All Users,Guest
+Tower Technician III,All Users,Guest
+Tower Top Hand,All Users,Guest
+Vice President,Management,Guest
+Vice President Business Development,Management,Guest
+Vice President Customer Relations,Management,Guest
+Vice President Finance & Acquisitions,Management,Guest
+Vice President In-Building-Civil Services,Management,Guest
+Vice President National Program Manager,Management,Guest
+Vice President of EH&S,Management,Guest
+Vice President Operations,Management,Guest
+Warehouse Associate,All Users,Guest
+Warehouse Lead,All Users,Guest
+Warehouse Manager,Management,Guest
+Welder,All Users,Guest
+Wireless Systems Integrator,All Users,Guest
