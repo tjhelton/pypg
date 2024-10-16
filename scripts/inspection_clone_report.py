@@ -1,6 +1,6 @@
 import json
-import requests
 import csv
+import requests
 
 TOKEN = 'TOKEN'
 
