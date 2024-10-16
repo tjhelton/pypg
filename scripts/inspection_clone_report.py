@@ -1,6 +1,6 @@
+import json
 import requests
 import csv
-import json
 
 TOKEN = 'TOKEN'
 
@@ -28,8 +28,8 @@ def feed_logs():
 def enrich_inspection(cloned_a):
     cloned_b = []
     for row in cloned_a:
-        id = row.get('copy', '')
-        url = f'https://api.safetyculture.io/inspections/v1/inspections/{id}/details'
+        sid = row.get('copy', '')
+        url = f'https://api.safetyculture.io/inspections/v1/inspections/{sid}/details'
         headers = {'accept': 'application/json', 'authorization': f'Bearer {TOKEN}'}
         response = requests.get(url, headers=headers).json()
         template = response.get('inspection').get('template').get('template_name')
@@ -48,8 +48,8 @@ def enrich_inspection(cloned_a):
 def enrich_user(cloned_b):
     cloned_c = []
     for row in cloned_b:
-        id = row.get('user', '')
-        url = f'https://api.safetyculture.io/users/{id}'
+        uid = row.get('user', '')
+        url = f'https://api.safetyculture.io/users/{uid}'
         headers = {'accept': 'application/json', 'authorization': f'Bearer {TOKEN}'}
         response = requests.get(url, headers=headers).json()
         first = response.get('firstname', '')
@@ -74,10 +74,9 @@ def write_csv():
     b = enrich_inspection(a)
     c = enrich_user(b)
     fieldnames = c[0].keys()
-    with open('duplicated_inspections.csv', 'w', newline='') as file:
+    with open('duplicated_inspections.csv', 'w', newline='', encoding='utf-8') as file:
         writer = csv.DictWriter(file, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(c)
-    return
 
 write_csv()
