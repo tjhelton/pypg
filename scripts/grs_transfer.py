@@ -1,8 +1,8 @@
 import http.client
 import json
 
-ORIGIN = 'token_here'
-DESTINATION = 'token_here'
+ORIGIN = 'TOKEN'
+DESTINATION = 'TOKEN'
 
 def list_all_grs():
     conn = http.client.HTTPSConnection('api.safetyculture.io')
