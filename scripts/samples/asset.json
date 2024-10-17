@@ -1,0 +1,50 @@
+{
+	"asset": {
+		"id": "1cb291dc-66f0-482d-9594-de69040e7787",
+		"code": "MBO_hall6_REAR",
+		"type": {
+			"name": "MBO_Line",
+			"type_id": "efafeacd-a8d6-46b1-9489-9fb6c9476c71",
+			"type": "TYPE_CATEGORY_CUSTOM"
+		},
+		"fields": [
+			{
+				"name": "Home Code",
+				"string_value": "MBO",
+				"field_id": "5b45cf1f-2932-4349-9f7e-4f40fec719c8"
+			},
+			{
+				"name": "Plant",
+				"string_value": "hall6",
+				"field_id": "e118b754-66d4-431d-8086-20d2723dc872"
+			},
+			{
+				"name": "Area",
+				"string_value": "prod",
+				"field_id": "36a9d541-896e-4780-9090-a718b7fc35d7"
+			},
+			{
+				"name": "Line",
+				"string_value": "REAR",
+				"field_id": "78c0b3ff-1428-48cb-81d1-04fb0dde77c1"
+			},
+			{
+				"name": "Display name",
+				"string_value": "MBO_hall6_2.rada",
+				"field_id": "ef1223ac-dfb5-11ec-9d64-0242ac120003"
+			}
+		],
+		"media": [],
+		"created_at": "2024-10-03T21:38:56.390128+00:00",
+		"modified_at": "2024-10-03T21:40:42.474016+00:00",
+		"site": {
+			"id": "91f5c4a5-6c8a-49cf-bfc6-e6ac8bda429a",
+			"name": "Mlada Boleslav"
+		},
+		"profile_image": null,
+		"state": "ASSET_STATE_ACTIVE",
+		"inspected_at": "2024-10-10T09:18:56.180000+00:00",
+		"sourced_from_external_system": false
+	},
+	"sourced_from_external_system": false
+}

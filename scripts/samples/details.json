@@ -1,0 +1,1136 @@
+{
+	"inspection": {
+		"metadata": {
+			"inspection_id": "0be4a343-d5c4-4332-8416-c7ba368b74e5",
+			"inspection_name": "16 Oct 2024 / Markus Naderer",
+			"created_time": "2024-10-16T21:11:59.148000+00:00",
+			"last_modified_time": "2024-10-16T21:13:13.933000+00:00",
+			"last_modified_by": {
+				"id": "4a445ea9-2ff5-42f2-90a1-dc8f158fd391",
+				"name": "Markus Naderer"
+			},
+			"completed_time": "2024-10-16T21:13:13.189000+00:00",
+			"is_marked_as_complete": true,
+			"is_archived": false,
+			"start_trigger": "",
+			"score": {
+				"combined_score_percentage": 17.857,
+				"combined_total_score": 56,
+				"combined_score": 10
+			},
+			"site": {
+				"site_id": "",
+				"site_name": ""
+			}
+		},
+		"template": {
+			"template_id": "0f23cc13-118e-4421-9fd0-cd3930d00daf",
+			"template_name": "i4.0 NBD Trainer Tagesroutinen (1st Level)",
+			"template_revision_id": "5-bc15bf8922ee4213a4a2813a3537bad3"
+		},
+		"items": [
+			{
+				"item_id": "f3245d39-ea77-11e1-aff1-0800200c9a66",
+				"type": "page",
+				"label": "Title Page",
+				"parent_id": "",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": null,
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "471a8558-3e31-41de-bd7d-a0f6b2aa2d50",
+				"type": "asset",
+				"label": "i4.0_Line",
+				"parent_id": "f3245d39-ea77-11e1-aff1-0800200c9a66",
+				"flagged": false,
+				"last_modified_time": "2024-10-16T21:12:02.000000+00:00",
+				"item_score": null,
+				"combined_item_score": null,
+				"asset_item": {
+					"asset_id": "f7346239-cd72-4a24-98e8-4d9a57b9d641"
+				},
+				"attachments": {
+					"note": "",
+					"media": []
+				}
+			},
+			{
+				"item_id": "f3245d42-ea77-11e1-aff1-0800200c9a66",
+				"type": "datetime",
+				"label": "Conducted on",
+				"parent_id": "f3245d39-ea77-11e1-aff1-0800200c9a66",
+				"flagged": false,
+				"last_modified_time": "2024-10-16T21:11:58.000000+00:00",
+				"item_score": null,
+				"combined_item_score": null,
+				"datetime_item": {
+					"datetime": "2024-10-16T21:11:58.000000+00:00"
+				},
+				"attachments": {
+					"note": "",
+					"media": []
+				}
+			},
+			{
+				"item_id": "f3245d43-ea77-11e1-aff1-0800200c9a66",
+				"type": "textsingle",
+				"label": "Prepared by",
+				"parent_id": "f3245d39-ea77-11e1-aff1-0800200c9a66",
+				"flagged": false,
+				"last_modified_time": "2024-10-16T21:11:58.000000+00:00",
+				"item_score": null,
+				"combined_item_score": null,
+				"text_item": {
+					"text": "Markus Naderer"
+				},
+				"attachments": {
+					"note": "",
+					"media": []
+				}
+			},
+			{
+				"item_id": "c55c2707-8c58-4c51-8c3b-44a630652b2f",
+				"type": "question",
+				"label": "i4.0_Shift",
+				"parent_id": "f3245d39-ea77-11e1-aff1-0800200c9a66",
+				"flagged": false,
+				"last_modified_time": "2024-10-16T21:12:06.000000+00:00",
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 0,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"question_item": {
+					"responses": [
+						{
+							"id": "c973642b-2e2c-47da-ba9a-115ed3564100",
+							"value": "Shift B"
+						}
+					]
+				},
+				"attachments": {
+					"note": "",
+					"media": []
+				}
+			},
+			{
+				"item_id": "e7adc7fc-d68c-4c12-8175-9dcfa64f0318",
+				"type": "page",
+				"label": "Assessment",
+				"parent_id": "",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": null,
+				"combined_item_score": {
+					"combined_score_percentage": 17.857,
+					"combined_max_score": 56,
+					"combined_score": 10
+				},
+				"attachments": null
+			},
+			{
+				"item_id": "08c7f955-507a-4573-9ed7-79280a02f9ab",
+				"type": "section",
+				"label": "Start-up",
+				"parent_id": "e7adc7fc-d68c-4c12-8175-9dcfa64f0318",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": null,
+				"combined_item_score": {
+					"combined_score_percentage": 18.75,
+					"combined_max_score": 16,
+					"combined_score": 3
+				},
+				"attachments": {
+					"note": "",
+					"media": []
+				}
+			},
+			{
+				"item_id": "4e5e15d7-4a6e-4566-ab19-eecdbace4552",
+				"type": "question",
+				"label": "STA_01: ",
+				"parent_id": "08c7f955-507a-4573-9ed7-79280a02f9ab",
+				"flagged": false,
+				"last_modified_time": "2024-10-16T21:12:09.000000+00:00",
+				"item_score": {
+					"score_percentage": 100,
+					"max_score": 3,
+					"score": 3
+				},
+				"combined_item_score": null,
+				"question_item": {
+					"responses": [
+						{
+							"id": "060ace00-1f61-468e-9c42-918fa93badcf",
+							"value": "Yes"
+						}
+					]
+				},
+				"attachments": {
+					"note": "",
+					"media": []
+				}
+			},
+			{
+				"item_id": "c8019fea-88a5-4b26-8df5-863872891d90",
+				"type": "question",
+				"label": "STA_02:",
+				"parent_id": "08c7f955-507a-4573-9ed7-79280a02f9ab",
+				"flagged": false,
+				"last_modified_time": "2024-10-16T21:12:13.000000+00:00",
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"question_item": {
+					"responses": []
+				},
+				"attachments": {
+					"note": "",
+					"media": []
+				}
+			},
+			{
+				"item_id": "0f2050fa-ae35-40e5-96e5-1316b9312969",
+				"type": "question",
+				"label": "STA_03:",
+				"parent_id": "08c7f955-507a-4573-9ed7-79280a02f9ab",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 3,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "f3668657-75dc-400f-9cc0-d162d2642c72",
+				"type": "question",
+				"label": "STA_04:",
+				"parent_id": "08c7f955-507a-4573-9ed7-79280a02f9ab",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 3,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "944a4d90-b307-4df8-85f2-05658146b821",
+				"type": "question",
+				"label": "STA_05:",
+				"parent_id": "08c7f955-507a-4573-9ed7-79280a02f9ab",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "9fa49960-4de3-41c6-bdd9-55a4d9699a00",
+				"type": "question",
+				"label": "STA_06:",
+				"parent_id": "08c7f955-507a-4573-9ed7-79280a02f9ab",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "ad026b3a-9a0b-44c7-8151-227f76ddd4f4",
+				"type": "question",
+				"label": "STA_07:",
+				"parent_id": "08c7f955-507a-4573-9ed7-79280a02f9ab",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "964f8192-8a91-4f8f-b346-87346d7355c1",
+				"type": "question",
+				"label": "STA_08:",
+				"parent_id": "08c7f955-507a-4573-9ed7-79280a02f9ab",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "55232f4a-72b7-481d-9f8f-6de16eeb546c",
+				"type": "question",
+				"label": "STA_09:",
+				"parent_id": "08c7f955-507a-4573-9ed7-79280a02f9ab",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "e27912f0-ff7f-4e79-b024-f116c372460f",
+				"type": "question",
+				"label": "STA_10:",
+				"parent_id": "08c7f955-507a-4573-9ed7-79280a02f9ab",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "7246f1ea-ff2d-4370-ab05-3b0da9552818",
+				"type": "section",
+				"label": "5S",
+				"parent_id": "e7adc7fc-d68c-4c12-8175-9dcfa64f0318",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": null,
+				"combined_item_score": {
+					"combined_score_percentage": 20,
+					"combined_max_score": 5,
+					"combined_score": 1
+				},
+				"attachments": {
+					"note": "",
+					"media": []
+				}
+			},
+			{
+				"item_id": "1b9254b5-93cb-4dc4-8848-51847024f11d",
+				"type": "question",
+				"label": "5S_01:",
+				"parent_id": "7246f1ea-ff2d-4370-ab05-3b0da9552818",
+				"flagged": false,
+				"last_modified_time": "2024-10-16T21:12:19.000000+00:00",
+				"item_score": {
+					"score_percentage": 100,
+					"max_score": 1,
+					"score": 1
+				},
+				"combined_item_score": null,
+				"question_item": {
+					"responses": [
+						{
+							"id": "060ace00-1f61-468e-9c42-918fa93badcf",
+							"value": "Yes"
+						}
+					]
+				},
+				"attachments": {
+					"note": "",
+					"media": []
+				}
+			},
+			{
+				"item_id": "82f9200c-9272-498a-9987-39bc5332086d",
+				"type": "question",
+				"label": "5S_02:",
+				"parent_id": "7246f1ea-ff2d-4370-ab05-3b0da9552818",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "ae34c520-0bdb-4d5d-b38e-be79ae96de65",
+				"type": "question",
+				"label": "5S_03:",
+				"parent_id": "7246f1ea-ff2d-4370-ab05-3b0da9552818",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "5230419a-fde3-47d6-9b21-517d9bb516fc",
+				"type": "question",
+				"label": "5S_04:",
+				"parent_id": "7246f1ea-ff2d-4370-ab05-3b0da9552818",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "20e67756-c945-45e6-b06f-e3fa4bcecb1a",
+				"type": "question",
+				"label": "5S_05:",
+				"parent_id": "7246f1ea-ff2d-4370-ab05-3b0da9552818",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "1c355365-2872-4ccb-9a1d-ae825fd14518",
+				"type": "section",
+				"label": "LPA",
+				"parent_id": "e7adc7fc-d68c-4c12-8175-9dcfa64f0318",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": null,
+				"combined_item_score": {
+					"combined_score_percentage": 20,
+					"combined_max_score": 5,
+					"combined_score": 1
+				},
+				"attachments": {
+					"note": "",
+					"media": []
+				}
+			},
+			{
+				"item_id": "f0cc9435-c295-4261-96b3-7d45419b47cb",
+				"type": "question",
+				"label": "LPA_01:",
+				"parent_id": "1c355365-2872-4ccb-9a1d-ae825fd14518",
+				"flagged": false,
+				"last_modified_time": "2024-10-16T21:12:22.000000+00:00",
+				"item_score": {
+					"score_percentage": 100,
+					"max_score": 1,
+					"score": 1
+				},
+				"combined_item_score": null,
+				"question_item": {
+					"responses": [
+						{
+							"id": "060ace00-1f61-468e-9c42-918fa93badcf",
+							"value": "Yes"
+						}
+					]
+				},
+				"attachments": {
+					"note": "",
+					"media": []
+				}
+			},
+			{
+				"item_id": "efcc9456-c785-4b54-bfea-ea3a75a6a674",
+				"type": "question",
+				"label": "LPA_02:",
+				"parent_id": "1c355365-2872-4ccb-9a1d-ae825fd14518",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "9c534df3-3adf-4db5-858f-350ab77f6e00",
+				"type": "question",
+				"label": "LPA_03:",
+				"parent_id": "1c355365-2872-4ccb-9a1d-ae825fd14518",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "c6b7d62f-6a88-451d-852e-c7a8e43c2b3e",
+				"type": "question",
+				"label": "LPA_04:",
+				"parent_id": "1c355365-2872-4ccb-9a1d-ae825fd14518",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "b4be7723-50eb-4f06-bc72-10976cd1a840",
+				"type": "question",
+				"label": "LPA_05:",
+				"parent_id": "1c355365-2872-4ccb-9a1d-ae825fd14518",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "5eb16896-1e76-4b35-8e06-386ca3c6944a",
+				"type": "section",
+				"label": "PokeYoke",
+				"parent_id": "e7adc7fc-d68c-4c12-8175-9dcfa64f0318",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": null,
+				"combined_item_score": {
+					"combined_score_percentage": 10,
+					"combined_max_score": 10,
+					"combined_score": 1
+				},
+				"attachments": {
+					"note": "",
+					"media": []
+				}
+			},
+			{
+				"item_id": "76f19f03-2676-4a4a-bf7e-e5a8568d6762",
+				"type": "question",
+				"label": "POK_01:",
+				"parent_id": "5eb16896-1e76-4b35-8e06-386ca3c6944a",
+				"flagged": false,
+				"last_modified_time": "2024-10-16T21:12:25.000000+00:00",
+				"item_score": {
+					"score_percentage": 100,
+					"max_score": 1,
+					"score": 1
+				},
+				"combined_item_score": null,
+				"question_item": {
+					"responses": [
+						{
+							"id": "060ace00-1f61-468e-9c42-918fa93badcf",
+							"value": "Yes"
+						}
+					]
+				},
+				"attachments": {
+					"note": "",
+					"media": []
+				}
+			},
+			{
+				"item_id": "bce4c13f-015d-4a05-964b-99d4adb489a8",
+				"type": "question",
+				"label": "POK_02:",
+				"parent_id": "5eb16896-1e76-4b35-8e06-386ca3c6944a",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "e36a373e-8167-4c2c-83cf-2accfd8a42e8",
+				"type": "question",
+				"label": "POK_03:",
+				"parent_id": "5eb16896-1e76-4b35-8e06-386ca3c6944a",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "47a2152f-f245-4164-8b02-53e5de3eed49",
+				"type": "question",
+				"label": "POK_04:",
+				"parent_id": "5eb16896-1e76-4b35-8e06-386ca3c6944a",
+				"flagged": true,
+				"last_modified_time": "2024-10-16T21:12:50.000000+00:00",
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"question_item": {
+					"responses": [
+						{
+							"id": "060ace01-1f61-468e-9c42-918fa93badcf",
+							"value": "No"
+						}
+					]
+				},
+				"attachments": {
+					"note": "",
+					"media": []
+				}
+			},
+			{
+				"item_id": "754add41-8221-4a59-a334-4d26d79c208b",
+				"type": "question",
+				"label": "POK_05:",
+				"parent_id": "5eb16896-1e76-4b35-8e06-386ca3c6944a",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "04f3daad-680e-4806-ac45-9cde5e27cd85",
+				"type": "question",
+				"label": "POK_06:",
+				"parent_id": "5eb16896-1e76-4b35-8e06-386ca3c6944a",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "261b84ff-71ef-496f-a7c5-080593d8ba39",
+				"type": "question",
+				"label": "POK_07:",
+				"parent_id": "5eb16896-1e76-4b35-8e06-386ca3c6944a",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "b0ee2a4c-ac8f-4320-b318-6b6ba8d98f53",
+				"type": "question",
+				"label": "POK_08:",
+				"parent_id": "5eb16896-1e76-4b35-8e06-386ca3c6944a",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "a3daef72-eb4c-4072-848a-bde797dffbff",
+				"type": "question",
+				"label": "POK_09:",
+				"parent_id": "5eb16896-1e76-4b35-8e06-386ca3c6944a",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "e9308a6e-0567-4848-ad14-0a7a8709f5fa",
+				"type": "question",
+				"label": "POK_10:",
+				"parent_id": "5eb16896-1e76-4b35-8e06-386ca3c6944a",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "d73fae63-9856-4f4b-b966-27c5eaa7beae",
+				"type": "section",
+				"label": "EHS",
+				"parent_id": "e7adc7fc-d68c-4c12-8175-9dcfa64f0318",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": null,
+				"combined_item_score": {
+					"combined_score_percentage": 20,
+					"combined_max_score": 5,
+					"combined_score": 1
+				},
+				"attachments": {
+					"note": "",
+					"media": []
+				}
+			},
+			{
+				"item_id": "009a48a3-f8a6-41ac-b221-d568ae630b26",
+				"type": "question",
+				"label": "EHS_01:",
+				"parent_id": "d73fae63-9856-4f4b-b966-27c5eaa7beae",
+				"flagged": false,
+				"last_modified_time": "2024-10-16T21:12:55.000000+00:00",
+				"item_score": {
+					"score_percentage": 100,
+					"max_score": 1,
+					"score": 1
+				},
+				"combined_item_score": null,
+				"question_item": {
+					"responses": [
+						{
+							"id": "060ace00-1f61-468e-9c42-918fa93badcf",
+							"value": "Yes"
+						}
+					]
+				},
+				"attachments": {
+					"note": "",
+					"media": []
+				}
+			},
+			{
+				"item_id": "0b0472c9-9b31-4ed0-a9c6-c12fee43097e",
+				"type": "question",
+				"label": "EHS_02:",
+				"parent_id": "d73fae63-9856-4f4b-b966-27c5eaa7beae",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "50fd4d7b-a81f-4847-ac7b-da6a5c5d9d9a",
+				"type": "question",
+				"label": "EHS_03:",
+				"parent_id": "d73fae63-9856-4f4b-b966-27c5eaa7beae",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "f5f3f1f8-c539-4377-ae8b-920f757815bd",
+				"type": "question",
+				"label": "EHS_04:",
+				"parent_id": "d73fae63-9856-4f4b-b966-27c5eaa7beae",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "9e00c22e-4c64-49ad-8d89-d86493a579f0",
+				"type": "question",
+				"label": "EHS_05:",
+				"parent_id": "d73fae63-9856-4f4b-b966-27c5eaa7beae",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "0690d2a7-8013-4b85-ad92-5bba0c306dcd",
+				"type": "section",
+				"label": "Energy&Sustainability",
+				"parent_id": "e7adc7fc-d68c-4c12-8175-9dcfa64f0318",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": null,
+				"combined_item_score": {
+					"combined_score_percentage": 20,
+					"combined_max_score": 5,
+					"combined_score": 1
+				},
+				"attachments": {
+					"note": "",
+					"media": []
+				}
+			},
+			{
+				"item_id": "6cffd465-1cfe-47de-adf1-bdae0f7c6951",
+				"type": "question",
+				"label": "ENE_01:",
+				"parent_id": "0690d2a7-8013-4b85-ad92-5bba0c306dcd",
+				"flagged": false,
+				"last_modified_time": "2024-10-16T21:13:02.000000+00:00",
+				"item_score": {
+					"score_percentage": 100,
+					"max_score": 1,
+					"score": 1
+				},
+				"combined_item_score": null,
+				"question_item": {
+					"responses": [
+						{
+							"id": "060ace00-1f61-468e-9c42-918fa93badcf",
+							"value": "Yes"
+						}
+					]
+				},
+				"attachments": {
+					"note": "",
+					"media": []
+				}
+			},
+			{
+				"item_id": "cbd14fbd-3061-4b5a-b8c8-dd5a550e1d92",
+				"type": "question",
+				"label": "ENE_02:",
+				"parent_id": "0690d2a7-8013-4b85-ad92-5bba0c306dcd",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "6c8907d6-adeb-4bd8-ac58-4ccb29df89ae",
+				"type": "question",
+				"label": "ENE_03:",
+				"parent_id": "0690d2a7-8013-4b85-ad92-5bba0c306dcd",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "c7d39e47-c8d1-4ef4-bb41-de9dc15826a3",
+				"type": "question",
+				"label": "ENE_04:",
+				"parent_id": "0690d2a7-8013-4b85-ad92-5bba0c306dcd",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "85c41814-3e2b-416d-bc07-7767ae3d755d",
+				"type": "question",
+				"label": "ENE_05:",
+				"parent_id": "0690d2a7-8013-4b85-ad92-5bba0c306dcd",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "dac7be7d-e34d-4647-8962-a804ce6fd16b",
+				"type": "section",
+				"label": "TPM",
+				"parent_id": "e7adc7fc-d68c-4c12-8175-9dcfa64f0318",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": null,
+				"combined_item_score": {
+					"combined_score_percentage": 20,
+					"combined_max_score": 5,
+					"combined_score": 1
+				},
+				"attachments": {
+					"note": "",
+					"media": []
+				}
+			},
+			{
+				"item_id": "de9862dc-a00e-4264-b929-e9289cd6b70e",
+				"type": "question",
+				"label": "TPM_01:",
+				"parent_id": "dac7be7d-e34d-4647-8962-a804ce6fd16b",
+				"flagged": false,
+				"last_modified_time": "2024-10-16T21:13:07.000000+00:00",
+				"item_score": {
+					"score_percentage": 100,
+					"max_score": 1,
+					"score": 1
+				},
+				"combined_item_score": null,
+				"question_item": {
+					"responses": [
+						{
+							"id": "060ace00-1f61-468e-9c42-918fa93badcf",
+							"value": "Yes"
+						}
+					]
+				},
+				"attachments": {
+					"note": "",
+					"media": []
+				}
+			},
+			{
+				"item_id": "9dff1862-c85a-40e5-aaff-74d8d56ca9fc",
+				"type": "question",
+				"label": "TPM_02:",
+				"parent_id": "dac7be7d-e34d-4647-8962-a804ce6fd16b",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "21483c81-2149-45e1-9f61-f8f69cb6df67",
+				"type": "question",
+				"label": "TPM_03",
+				"parent_id": "dac7be7d-e34d-4647-8962-a804ce6fd16b",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "2ab1a1a3-3ae8-4e70-afa7-12345ba99d55",
+				"type": "question",
+				"label": "TPM_04:",
+				"parent_id": "dac7be7d-e34d-4647-8962-a804ce6fd16b",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "351466f5-1e6f-4f9c-9a43-f8a0c1982473",
+				"type": "question",
+				"label": "TPM_05:",
+				"parent_id": "dac7be7d-e34d-4647-8962-a804ce6fd16b",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "a8a72036-446e-42d6-be81-f8149cb79b83",
+				"type": "section",
+				"label": "Other",
+				"parent_id": "e7adc7fc-d68c-4c12-8175-9dcfa64f0318",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": null,
+				"combined_item_score": {
+					"combined_score_percentage": 20,
+					"combined_max_score": 5,
+					"combined_score": 1
+				},
+				"attachments": {
+					"note": "",
+					"media": []
+				}
+			},
+			{
+				"item_id": "2b3c07e3-9d06-4251-80f7-9e5a74e791eb",
+				"type": "question",
+				"label": "OTH_01:",
+				"parent_id": "a8a72036-446e-42d6-be81-f8149cb79b83",
+				"flagged": false,
+				"last_modified_time": "2024-10-16T21:13:10.000000+00:00",
+				"item_score": {
+					"score_percentage": 100,
+					"max_score": 1,
+					"score": 1
+				},
+				"combined_item_score": null,
+				"question_item": {
+					"responses": [
+						{
+							"id": "060ace00-1f61-468e-9c42-918fa93badcf",
+							"value": "Yes"
+						}
+					]
+				},
+				"attachments": {
+					"note": "",
+					"media": []
+				}
+			},
+			{
+				"item_id": "7d430ace-e916-49ef-a155-96fb900e215a",
+				"type": "question",
+				"label": "OTH_02:",
+				"parent_id": "a8a72036-446e-42d6-be81-f8149cb79b83",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "fc1f75e2-232d-40cb-bf34-85226314c89c",
+				"type": "question",
+				"label": "OTH_03:",
+				"parent_id": "a8a72036-446e-42d6-be81-f8149cb79b83",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "065a1768-1238-40e9-9f5c-ce2219f77851",
+				"type": "question",
+				"label": "OTH_04:",
+				"parent_id": "a8a72036-446e-42d6-be81-f8149cb79b83",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			},
+			{
+				"item_id": "44eb990f-57d3-47ea-8380-c16503b5e23a",
+				"type": "question",
+				"label": "OTH_05:",
+				"parent_id": "a8a72036-446e-42d6-be81-f8149cb79b83",
+				"flagged": false,
+				"last_modified_time": null,
+				"item_score": {
+					"score_percentage": 0,
+					"max_score": 1,
+					"score": 0
+				},
+				"combined_item_score": null,
+				"attachments": null
+			}
+		]
+	}
+}
