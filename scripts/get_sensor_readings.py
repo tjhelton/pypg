@@ -1,4 +1,3 @@
-import csv
 import requests
 
 TOKEN = 'TOKEN'
@@ -14,14 +13,14 @@ def list_sensors():
     clean = [{'source_name': row['source_name'], 'source_id': row['source_id'], 'asset': row['asset_name'], 'location': row['location_name']} for row in response]
     return clean
 
-def main(input):
+def main(inp):
     output = []
-    for row in input:
+    for row in inp:
         asset = row['asset']
         location = row['location']
         source = row['source_name']
-        id = row['source_id']
-        url = f'https://api.safetyculture.io/sensors/v1/sensors/{source}/{id}/latest-readings'
+        sid = row['source_id']
+        url = f'https://api.safetyculture.io/sensors/v1/sensors/{source}/{sid}/latest-readings'
         headers = {
             "accept": "application/json",
             "authorization": f"Bearer {TOKEN}"
