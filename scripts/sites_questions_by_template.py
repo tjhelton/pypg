@@ -50,7 +50,6 @@ def get_site_question(template_id):
         'site question exists?': site_question_exists,
         'is_mandatory?': is_mandatory
     })
-    return
 
 def write_to_csv(filename):
     headers = ['id', 'name', 'site question exists?', 'is_mandatory?']
