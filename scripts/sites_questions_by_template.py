@@ -15,7 +15,7 @@ def feed_templates():
     while next_page:
         url = f'https://api.safetyculture.io{next_page}'
         response = requests.get(url, headers=headers)
-        data.extend(response.json()['data']) 
+        data.extend(response.json()['data'])
         next_page = response.json().get('metadata', {}).get('next_page')
 
     ids = [row['id'] for row in data]
@@ -38,9 +38,9 @@ def get_site_question(template_id):
     is_mandatory = None
 
     for item in items:
-        if item.get('label') == 'Title Page':  
+        if item.get('label') == 'Title Page':
             for child in item.get('children', []):
-                if 'site' in child:  
+                if 'site' in child:
                     site_question_exists = 'Yes'
                     is_mandatory = child['site']['options'].get('is_mandatory', False)
 
@@ -56,13 +56,13 @@ def write_to_csv(filename):
     headers = ['id', 'name', 'site question exists?', 'is_mandatory?']
     with open(filename, mode='w', newline='', encoding='utf-8') as file:
         writer = csv.DictWriter(file, fieldnames=headers)
-        writer.writeheader()  
-        writer.writerows(OUTPUT)  
+        writer.writeheader()
+        writer.writerows(OUTPUT)
 
 def process():
     temps = feed_templates()
     for row in temps:
         get_site_question(row)
-    write_to_csv('output.csv')  
+    write_to_csv('output.csv')
 
 process()
