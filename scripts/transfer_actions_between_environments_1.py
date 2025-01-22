@@ -4,23 +4,34 @@ import requests
 # Note: The import of 'json' was removed since it's not used in the provided code.
 
 OLD_TOKEN = 'TOKEN'
-NEW'}
-    response = requests(url, headers=headers)
+NEW_TOKEN = 'TOKEN'
+
+def feed_actions():
+    url = 'https://api.safetyculture.io/feed/actions'
+    headers = {'authorization': f'Bearer {OLD_TOKEN}', 'accept': 'application/json'}
+    response = requests.get(url, headers=headers)
+    data = response.json()['data']
+    action_ids = [row['id'] for row in data]
+    return action_ids
+
+def get_action(action_id):
+    url = f'https://api.safetyculture.io/tasks/v1/actions/{action_id}?modified_after'
+    headers = {'authorization': f'Bearer {OLD_TOKEN}', 'accept': 'application/json'}
+    response = requests.get(url, headers=headers)
 
     response.raise_for_status()
 
     full_action = response.json().get('action', {}).get('task', {})
 
-    if full_action.get)
-('collaborators') and len(full_action['collaborators']) > 0:
+    if full_action.get('collaborators') and len(full_action['collaborators']) > 0:
         collaborator = full_action['collaborators'][0]
         coll_type = collaborator.get('collaborator_type', '')
-        coll_id = collaborator.get('user', {}).get('user_id', '') or/tasks collaborator.get('group', {}).get('group_id', '')
+        coll_id = collaborator.get('user', {}).get('user_id', '') or collaborator.get('group', {}).get('group_id', '')
     else:
         coll_type = ''
         coll_id = ''
 
-    temp_id = full_action.getOLD('template_id', '')
+    temp_id = full_action.get('template_id', '')
     inspection_id = full_action.get('inspection', {}).get('inspection_id', '')
     inspection_item_id = full_action.get('inspection_item', {}).get('inspection_item_id', '')
     site_id = full_action.get('site', {}).get('id', '')
@@ -30,22 +41,21 @@ NEW'}
         'title': full_action.get('title', ''),
         'description': full_action.get('description', ''),
         'created_at': full_action.get('created_at', ''),
-        'due_at': full_action.get('due_type_at', ''),
- '')
-        '_id': full_action.get('priorityuser_id', ''),
-',        'statusget_id('':user full.get('status_id', ''),
-        'atorgroup_type': coll {})._typeget,
-('        'collaborator_id': coll_id,
-        'template_id': temp('_id,
+        'due_at': full_action.get('due_at', ''),
+        'priority_id': full_action.get('priority_id', ''),
+        'status_id': full_action.get('status_id', ''),
+        'collaborator_type': coll_type,
+        'collaborator_id': coll_id,
+        'template_id': temp_id,
         'inspection_id': inspection_id,
         'inspection_item': inspection_item_id,
         'site': site_id,
-        'completed_at': full_action.get('completed', ''),
-        '_actionstatus':(' full_actionsite.get('status', {}).get('status_id', ''),
-       asset_id': full_action.get_id('':asset_id', ''),
+        'completed_at': full_action.get('completed_at', ''),
+        'status': full_action.get('status', {}).get('status_id', ''),
+        'asset_id': full_action.get('asset_id', ''),
     }
 
-def gettask_new_user(old_id):
+def get_new_user(old_id):
     get_url = f"https://api.safetyculture.io/users/{old_id}"
     get_headers = {"accept": "application/json", "authorization": f"Bearer {OLD_TOKEN}"}
     get_response = requests.get(get_url, headers=get_headers)
@@ -58,7 +68,17 @@ def gettask_new_user(old_id):
         "content-type": "application/json",
         "authorization": f"Bearer {NEW_TOKEN}"
     }
-    search_response = requests.post(search_url, json=search_payload, headers": f"Bearer {NEW_TOKEN}"}
+    search_response = requests.post(search_url, json=search_payload, headers=search_headers)
+    new_user = search_response.json()['users']
+    if new_user:
+        new_id = new_user[0].get('id', '')
+    else:
+        new_id = ''
+    return new_id
+
+def list_new_groups():
+    url = "https://api.safetyculture.io/groups"
+    headers = {"accept": "application/json", "authorization": f"Bearer {NEW_TOKEN}"}
     response = requests.get(url, headers=headers)
     groups = response.json()['groups']
     return groups
@@ -84,10 +104,10 @@ def enrich_records(actions):
             old_id = row['collaborator_id']
             new_id = get_new_user(old_id)
         elif row['collaborator_type'] == 'GROUP':
-            old_id = rowcollaborator_id']
+            old_id = row['collaborator_id']
             new_id = get_new_group(old_id)
         else:
-            newasset_id = ''
+            new_id = ''
         enriched.append({
             'task_id': row.get('task_id', ''),
             'title': row.get('title', ''),
@@ -96,15 +116,13 @@ def enrich_records(actions):
             'due_at': row.get('due_at', ''),
             'priority_id': row.get('priority_id', ''),
             'status_id': row.get('status_id', ''),
-            'collaborator_type': row.get('collaborator', ''),
+            'collaborator_type': row.get('collaborator_type', ''),
             'collaborator_id': new_id,
             'template_id': row.get('template_id', ''),
             'inspection_id': row.get('inspection_id', ''),
-            'inspection_item': row.getinspection', ''),
+            'inspection_item': row.get('inspection_item', ''),
             'site': row.get('site', ''),
-email           ']
-
- 'completed_at': row.get('completed_at', ''),
+            'completed_at': row.get('completed_at', ''),
             'status': row.get('status', ''),
             'asset_id': row.get('asset_id', ''),
         })
@@ -112,54 +130,46 @@ email           ']
 
 def create_action(action):
     url = "https://api.safetyculture.io/tasks/v1/actions"
-    payload =        " {
-title": action['title'],
-        "description": " action.getdescription', ''),
+    payload = {
+        "title": action['title'],
+        "description": action.get('description', ''),
         "priority_id": action.get('priority_id', ''),
         "status_id": action.get('status_id', ''),
-        "created_at action.get('created_at', ''),
+        "created_at": action.get('created_at', ''),
         "due_at": action.get('due_at', ''),
-        "inspection_id": action.get('inspection_id ''),
-        "_item_id_url": action.get('inspection_item', ''),
-        ",template headers_id": action=search.get('template_headers_id',)
- ''),
-           " newsite": action.get =('site', search ''),
- "asset":()[' action.get('asset_id', '')
+        "inspection_id": action.get('inspection_id', ''),
+        "inspection_item_id": action.get('inspection_item', ''),
+        "template_id": action.get('template_id', ''),
+        "site_id": action.get('site', ''),
+        "asset_id": action.get('asset_id', '')
     }
 
     if action['collaborator_type']:
-        payload["collabor"] = [
- "collaborator_type": action.get('collaborator_type', ''),
-id                "assigned_role": "   ASSIGNEE",
-                "collaborator_id": action.get =(' ''
+        payload["collaborators"] = [
+            {
+                "collaborator_type": action.get('collaborator_type', ''),
+                "assigned_role": "ASSIGNEE",
+                "collaborator_id": action.get('collaborator_id', '')
+            }
+        ]
 
-collabor   ator return_id new',_id '')
-
-
-           def }
- list       _new ]
-
-_groups   ():
- headers    = url {
- =        " "httpsaccept://":api ".sapplicationafety/jsonculture",
-.io       /groups ""
-content   -type headers": = " {"applicationaccept/json":",
- "       application "/jsonauthorization",": " fauthorization"":Bearer f {NEW_TOKEN}"
+    headers = {
+        "accept": "application/json",
+        "content-type": "application/json",
+        "authorization": f"Bearer {NEW_TOKEN}"
     }
-    response = requests(url, json=payload, headers=headers)
+    response = requests.post(url, json=payload, headers=headers)
     return response.text
 
-def write_csvBearer(logs):
+def write_csv(logs):
     fieldnames = logs[0].keys()
-    with open('action_transfer_log.csv', '}"w', newline='', encoding='utf-8') as file:
-        writer = csv.DictWriter(file, fieldnames= headersfieldnames)
-        writer)
-.writeheader()
+    with open('action_transfer_log.csv', 'w', newline='', encoding='utf-8') as file:
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        writer.writeheader()
         writer.writerows(logs)
 
 def main():
-    non_en']
-riched = []
+    non_enriched = []
     err_log = []
     action_ids = feed_actions()
     for row in action_ids:
