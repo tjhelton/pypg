@@ -10,7 +10,7 @@ TOKEN = ''
 GROUP_ID = ''  # Assignee. Just a single group to make testing easy (role_ or uuid)
 TEMPLATE_ID = ''  # For schedules/recurring actions. Just a single template to make testing easy (must be uuid)
 SCHEDULE_ID = ''  # For recurring actions - not transferrable across environments
-# *** In order to obtain schedule id, create a recurring action via the front-end with your desired cadence. Then perform a get on that action item and you'll find a schedule id in "references". 
+# *** In order to obtain schedule id, create a recurring action via the front-end with your desired cadence. Then perform a get on that action item and you'll find a schedule id in "references".
 CUSTOM_TYPE_ID = ''  # Not required
 
 def get_types():
@@ -204,7 +204,7 @@ def link_template(action_id):
         "accept": "application/json",
         "content-type": "application/json",
         "authorization": f"Bearer {TOKEN}"
-    } 
+    }
     response = requests.post(url, json=payload, headers=headers)
     return response
 
