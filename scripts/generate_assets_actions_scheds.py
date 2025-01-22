@@ -146,7 +146,7 @@ def create_action(asset):
             "site_id": site,
             "references": [
                 {
-                    "typeType": "SCHEDULE",
+                    "type": "SCHEDULE",
                     "schedule_context": { "frequency": "FREQ=MONTHLY;BYMONTHDAY=1" },
                     "id": SCHEDULE_ID
                 }
@@ -156,7 +156,7 @@ def create_action(asset):
     else:
         payload = {
             "type": {
-                "typeType": "TASK_TYPE_CUSTOM",
+                "type": "TASK_TYPE_CUSTOM",
                 "id": CUSTOM_TYPE_ID
             },
             "title": title,
@@ -176,7 +176,7 @@ def create_action(asset):
             "site_id": site,
             "references": [
                 {
-                    "typeType": "SCHEDULE",
+                    "type": "SCHEDULE",
                     "schedule_context": { "frequency": "FREQ=MONTHLY;BYMONTHDAY=1" },
                     "id": SCHEDULE_ID
                 }
@@ -192,4 +192,84 @@ def create_action(asset):
     action_id = response.json()['action_id']
     return action_id
 
-def...
+def link_template(action_id):
+    url = f"https://api.safetyculture.io/tasks/v1/tasks/{action_id}/link_template"
+
+    payload = {
+        "template_ids": [
+            TEMPLATE_ID
+        ]
+    }
+    headers = {
+        "accept": "application/json",
+        "content-type": "application/json",
+        "authorization": f"Bearer {TOKEN}"
+    } 
+    response = requests.post(url, json=payload, headers=headers)
+    return response
+
+def create_schedule(asset):
+    title = asset['code']
+    site = asset['site']
+    asset_id = asset['asset_id']
+    now = datetime.now()
+    first_day = now.replace(day=1)
+    dtstart = first_day.strftime("%Y%m%dT%H%M%SZ")
+
+    url = "https://api.safetyculture.io/schedules/v1/schedule_items"
+
+    payload = {
+        "must_complete": "ONE",
+        "can_late_submit": True,
+        "start_time": {
+            "hour": 8,
+            "minute": 0
+        },
+        "document": {
+            "type": "TEMPLATE",
+            "id": TEMPLATE_ID
+        },
+        "status": "ACTIVE",
+        "description": title,
+        "recurrence": f"FREQ=MONTHLY;BYDAY=MO;INTERVAL=1;DTSTART={dtstart}",
+        "duration": "P1M",
+        "assignees": [
+            {
+                "type": "ROLE",
+                "id": GROUP_ID
+            }
+        ],
+        "location_id": site,
+        "asset_id": asset_id
+    }
+    headers = {
+        "accept": "application/json",
+        "content-type": "application/json",
+        "authorization": f"Bearer {TOKEN}"
+    }
+
+    response = requests.post(url, json=payload, headers=headers)
+    id_val = response.json().get('id', None)
+    if id_val:
+        ret = id_val
+    else:
+        ret = response.json()
+    return ret
+
+def main():
+    count = COUNT
+    while count > 0:
+        site = rand_site()['site_uuid']
+        type = rand_type()
+        asset = create_asset(type, site)
+
+        if random.randint(0,1) == 0: #if 0, then create an action. Otherwise, create a schedule
+            action = create_action(asset)
+            link_template(action)
+            print(f"Action Item - {action}, {count} Remaining")
+        else:
+            schedule = create_schedule(asset)
+            print(f"Schedule - {schedule}, {count} Remaining")
+        count -= 1
+
+main()
