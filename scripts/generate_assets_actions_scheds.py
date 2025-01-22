@@ -90,16 +90,16 @@ def last_day_of_month():
     clean = raw.strftime("%Y-%m-%dT%H:%M:%S.%fZ")
     return clean
 
-def create_asset(type, site):
+def create_asset(type_item, site):
     uniq = random.randint(100000000, 999999999)
-    code = f'{uniq} - {type["name"]} - TEST'
+    code = f'{uniq} - {type_item["name"]} - TEST'
 
     url = "https://api.safetyculture.io/assets/v1/assets"
 
     payload = {
         "site": site,
         "code": code,
-        "type_id": type['id']
+        "type_id": type_item['id']
     }
     headers = {
         "accept": "application/json",
@@ -252,8 +252,7 @@ def create_schedule(asset):
     id_val = response.json().get('id', None)
     if id_val:
         return id_val
-    else:
-        return response.json()
+    return response.json()  # Removed else and simplified return
 
 def main():
     count = COUNT
