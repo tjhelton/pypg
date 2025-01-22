@@ -4,14 +4,14 @@ import requests
 
 # **** ENSURE YOU HAVE THE "WEB TASKS LINK TEMPLATES" FEATURE FLAG ENABLED VIA DEVELOPER TOOLS/PERISCOPE ***
 
-COUNT = 100000 # Number of assets/actions/schedules you want to create
+COUNT = 100000  # Number of assets/actions/schedules you want to create
 
 TOKEN = ''
-GROUP_ID = '' # Assignee. Just a single group to make testing easy (role_ or uuid)
-TEMPLATE_ID = '' # For schedules/recurring actions. Just a single template to make testing easy (must be uuid)
-SCHEDULE_ID = '' # For recurring actions - not transferrable across environments
+GROUP_ID = ''  # Assignee. Just a single group to make testing easy (role_ or uuid)
+TEMPLATE_ID = ''  # For schedules/recurring actions. Just a single template to make testing easy (must be uuid)
+SCHEDULE_ID = ''  # For recurring actions - not transferrable across environments
 # *** In order to obtain schedule id, create a recurring action via the front-end with your desired cadence. Then perform a get on that action item and you'll find a schedule id in "references". 
-CUSTOM_TYPE_ID = '' # Not required
+CUSTOM_TYPE_ID = ''  # Not required
 
 def get_types():
     url = "https://api.safetyculture.io/assets/v1/types/list"
@@ -68,8 +68,8 @@ def get_sites():
 def rand_type():
     types = get_types()
     types_index = random.randint(1, len(types)-1)
-    type = types[types_index]
-    return type
+    type_item = types[types_index]  # Changed variable name to avoid shadowing 'type'
+    return type_item
 
 def rand_site():
     sites = get_sites()
@@ -251,17 +251,16 @@ def create_schedule(asset):
     response = requests.post(url, json=payload, headers=headers)
     id_val = response.json().get('id', None)
     if id_val:
-        ret = id_val
+        return id_val
     else:
-        ret = response.json()
-    return ret
+        return response.json()
 
 def main():
     count = COUNT
     while count > 0:
         site = rand_site()['site_uuid']
-        type = rand_type()
-        asset = create_asset(type, site)
+        type_item = rand_type()  # Changed to match the function return variable
+        asset = create_asset(type_item, site)
 
         if random.randint(0,1) == 0: #if 0, then create an action. Otherwise, create a schedule
             action = create_action(asset)
