@@ -25,7 +25,7 @@ Replace `your_venv_name` with the desired name for your virtual environment.
 
 ## 3. Activate the Virtual Environment
 
-Once created, activate the virtual environment using the following commands:
+Once created, activate the virtual environment using the following commands: ****** USE THIS ONE WHEN YOU WANT TO RUN A SCRIPT
 
   ```bash
   source your_venv_name/bin/activate
