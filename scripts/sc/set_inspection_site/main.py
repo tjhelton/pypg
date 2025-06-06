@@ -1,6 +1,6 @@
+import os
 import requests
 import pandas as pd
-import os
 
 TOKEN = ''
 
@@ -32,7 +32,7 @@ def set_inspection_site(audit_id, site_id, count):
 def main():
     csv = read_csv()
     count = 0
-    
+
     for row in csv:
         audit_id = row['audit_id']
         site_id = row['site_id']
@@ -44,6 +44,5 @@ def main():
         })
         df.to_csv('output.csv', mode='a', header=not os.path.exists('output.csv'), index=False)
         count += 1
-    
+
 main()
-    

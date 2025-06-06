@@ -1,8 +1,8 @@
+import os
 import requests
 import pandas as pd
-import os
 
-TOKEN = '14a6425122c93f475f5f242188b5692e6f40641117797154c3a1f7899b6d6346'
+TOKEN = ''
 
 def read_csv():
     csv_df = pd.read_csv('input.csv')
@@ -38,7 +38,7 @@ def create_site(name, parent, count):
         status = f"#{count} - ERROR creating {name}: {error}"
         print(status)
         return status
-    
+
 def main():
     csv_data = read_csv()
     count = 0
