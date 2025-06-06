@@ -1,6 +1,6 @@
 # SafetyCulture Template Archiver
 
-This Python script archives templates in SafetyCulture using their API. It reads template IDs from a CSV file, sends archive requests to the SafetyCulture API, and logs the results to an output CSV file. This guide is for beginners to Python who want to run the script.
+This Python script archives templates in SafetyCulture via API. It reads template IDs from a CSV file, sends archive requests to the SafetyCulture API, and logs the results to an output CSV file. This guide is for beginners to Python who want to run the script.
 
 ## Prerequisites
 - **Python 3**: You need Python installed on your computer. Download it from [python.org](https://www.python.org/downloads/) if you don't have it.
@@ -50,7 +50,7 @@ This Python script archives templates in SafetyCulture using their API. It reads
 
 2. Run the script by typing:
    ```
-   python archive_templates.py
+   python main.py
    ```
 
 3. The script will:
