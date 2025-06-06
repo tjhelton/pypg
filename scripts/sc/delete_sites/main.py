@@ -1,8 +1,8 @@
+import os
 import requests
 import pandas as pd
-import os
 
-TOKEN = ''  
+TOKEN = ''
 
 def read_csv():
     csv_df = pd.read_csv('input.csv')
