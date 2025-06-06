@@ -24,7 +24,6 @@ def main():
     for row in templates:
         result = archive_template(row)
         output.append({"template_id": row, "result": result})
-
     output_df = pd.DataFrame(output)
     output_df.to_csv('log_output.csv', index=False)
 
