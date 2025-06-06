@@ -1,6 +1,5 @@
 import requests
 import pandas as pd
-import os
 
 TOKEN = ''
 
@@ -37,7 +36,7 @@ def initialize_update(users):
         return job_id
     except requests.exceptions.RequestException as error:
         print(f'ERROR - {error}')
-        return
+        return None
 
 def start_update(job):
     url = f"https://api.safetyculture.io/users/v1/users/upsert/jobs/{job}"
@@ -70,6 +69,6 @@ def main():
     job = initialize_update(mapped)
     result_id = start_update(job)
     get_job(result_id)
-    
+    return None
+
 main()
-    
