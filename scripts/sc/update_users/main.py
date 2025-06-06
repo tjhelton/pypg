@@ -69,6 +69,5 @@ def main():
     job = initialize_update(mapped)
     result_id = start_update(job)
     get_job(result_id)
-    return None
 
 main()
