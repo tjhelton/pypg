@@ -47,13 +47,13 @@ def main():
     for row in csv_data:
         name = row['name']
         parent = row.get('parent', None)
-        old_id = row['site_id']
-        status = create_site(name, parent, count)
+        meta_label = row.get('meta_label', None)
+        status = create_site(name, parent, meta_label, count)
         df = pd.DataFrame({
             'count': [count],
-            'SiteName': [name],
-            'Status': [status],
-            'old_id': [old_id]
+            'site_name': [name],
+            'meta_label': [meta_label],
+            'status': [status]
         })
         df.to_csv(output_file, mode='a', header=not os.path.exists(output_file), index=False)
         count += 1
