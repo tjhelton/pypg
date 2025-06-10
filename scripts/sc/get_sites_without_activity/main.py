@@ -43,7 +43,7 @@ def feed_inspections():
                 "accept": "application/json",
                 "authorization": f"Bearer {TOKEN}"
             }
-            response = requests.get(url, headers=headers).json(),
+            response = requests.get(url, headers=headers).json()
             data = response['data']
             inspections.extend(data)
             count += 1
