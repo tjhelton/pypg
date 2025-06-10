@@ -10,17 +10,17 @@ def read_csv():
     csv = csv_df.to_dict('records')
     return csv
 
-def create_site(name, parent, count):
+def create_site(name, parent, meta_label, count):
     try:
         url = "https://api.safetyculture.io/directory/v1/folder"
         if parent == '':
             payload = {
-                "meta_label": "location",
+                "meta_label": meta_label,
                 "name": name
             }
         else:
             payload = {
-                "meta_label": "location",
+                "meta_label": meta_label,
                 "parent_id": parent,
                 "name": name
             }
