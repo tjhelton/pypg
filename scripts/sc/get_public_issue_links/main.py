@@ -40,4 +40,3 @@ def main():
         response_df.to_csv("output.csv", mode='a', header=not os.path.exists("output.csv"), index=False)
 
 main()
-        
