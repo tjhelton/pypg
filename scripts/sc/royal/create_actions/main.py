@@ -1,8 +1,8 @@
+import os
 import time
 import uuid
 import requests
 import pandas as pd
-import os
 
 TOKEN = ""
 
