@@ -1,6 +1,6 @@
+import os
 import requests
 import pandas as pd
-import os
 
 TOKEN = ''
 
@@ -43,5 +43,4 @@ def main():
         df.to_csv('output.csv', mode='a', header=not os.path.exists('output.csv'), index=False)
         count += 1
 
-    main()
-    
+main()

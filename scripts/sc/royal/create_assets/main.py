@@ -131,5 +131,4 @@ def main():
         log_results(created_results)
         log_results(failed_results)
 
-    main()
-    
+main()
