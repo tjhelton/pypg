@@ -30,5 +30,4 @@ def main():
     for chunk in chunked:
         delete_actions(chunk)
 
-    main()
-    
+main()

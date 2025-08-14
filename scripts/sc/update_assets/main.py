@@ -97,5 +97,4 @@ def main():
         result = update_asset(asset)
         log_results([result])
 
-    main()
-    
+main()
