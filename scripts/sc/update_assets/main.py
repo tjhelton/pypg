@@ -1,9 +1,9 @@
+import os
 import time
 import requests
 import pandas as pd
-import os
 
-TOKEN = ""  
+TOKEN = ""
 
 def read_csv():
     csv_df = pd.read_csv("assets.csv").fillna("")
@@ -12,7 +12,7 @@ def read_csv():
 
 def log_results(results_array):
     for row in results_array:
-        asset_id = row["asset_id"]  
+        asset_id = row["asset_id"]
         code = row["code"]
         status = row["status"]
         message = row["message"]
@@ -60,7 +60,7 @@ def map_csv(csv):
     return assets
 
 def update_asset(asset):
-    asset_id = asset["asset_id"]  
+    asset_id = asset["asset_id"]
     fields = asset["fields"]
     code = asset["code"]
     url = f"https://api.safetyculture.io/assets/v1/assets/{asset_id}/fields"

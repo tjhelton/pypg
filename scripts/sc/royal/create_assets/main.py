@@ -1,7 +1,7 @@
+import os
 import time
 import requests
 import pandas as pd
-import os
 
 TOKEN = ""
 SHIP_CODE = 'SHIP_CODE_HERE_DO_NOT_FORGET_TO_SET'
