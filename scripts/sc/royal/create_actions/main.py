@@ -1,8 +1,8 @@
-import os
+import time
 import uuid
 import requests
 import pandas as pd
-import time
+import os
 
 TOKEN = ""
 
@@ -19,12 +19,11 @@ def log_results(results_array):
         message = row["message"]
         asset_id = row["asset_id"]
         df = pd.DataFrame(
-            {"action_id": [action_id],"asset_id": [asset_id], "title": [title], "status": [status], "message": [message]}
+            {"action_id": [action_id], "asset_id": [asset_id], "title": [title], "status": [status], "message": [message]}
         )
         df.to_csv(
             "output.csv", mode="a", header=not os.path.exists("output.csv"), index=False
         )
-    return
 
 def create_action(action):
     max_retries = 3
@@ -39,7 +38,6 @@ def create_action(action):
     rrule_freq = action['frequency'].replace('\\n', '\n')
     template_id = action['template_id']
     url = "https://api.safetyculture.io/tasks/v1/actions:CreateActionSchedule"
-
     payload = {
         "title": title,
         "description": description,
@@ -48,7 +46,7 @@ def create_action(action):
                 "collaboratorId": group_uuid,
                 "collaboratorType": "GROUP",
                 "assignedRole": "ASSIGNEE",
-                "group": { "groupId": group_uuid }
+                "group": {"groupId": group_uuid}
             }
         ],
         "priorityId": "16ba4717-adc9-4d48-bf7c-044cfe0d2727",
@@ -68,7 +66,6 @@ def create_action(action):
         "content-type": "application/json",
         "authorization": f"Bearer {TOKEN}"
     }
-
     for attempt in range(max_retries):
         try:
             response = requests.post(url, json=payload, headers=headers)
@@ -102,7 +99,6 @@ def main():
     actions = read_csv()
     total_actions = len(actions)
     print(f"Total actions to process: {total_actions}")
-
     for i, action in enumerate(actions, 1):
         print(f"Processing action {i}/{total_actions}: {action['title']}...")
         result = create_action(action)

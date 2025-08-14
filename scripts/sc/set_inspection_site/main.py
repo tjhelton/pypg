@@ -1,6 +1,6 @@
-import os
 import requests
 import pandas as pd
+import os
 
 TOKEN = ''
 
@@ -12,8 +12,7 @@ def read_csv():
 def set_inspection_site(audit_id, site_id, count):
     try:
         url = f"https://api.safetyculture.io/inspections/v1/inspections/{audit_id}/site"
-
-        payload = { "site_id": site_id }
+        payload = {"site_id": site_id}
         headers = {
             "accept": "application/json",
             "content-type": "application/json",
@@ -32,7 +31,6 @@ def set_inspection_site(audit_id, site_id, count):
 def main():
     csv = read_csv()
     count = 0
-
     for row in csv:
         audit_id = row['audit_id']
         site_id = row['site_id']
@@ -45,4 +43,5 @@ def main():
         df.to_csv('output.csv', mode='a', header=not os.path.exists('output.csv'), index=False)
         count += 1
 
-main()
+    main()
+    
