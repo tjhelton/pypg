@@ -1,6 +1,5 @@
 import requests
 import pandas as pd
-import os
 
 TOKEN = ''
 
@@ -15,7 +14,7 @@ def chunk_actions(actions):
 
 def delete_actions(actions):
     url = "https://api.safetyculture.io/tasks/v1/actions/delete"
-    payload = { "ids": actions }
+    payload = {"ids": actions}
     headers = {
         "accept": "application/json",
         "content-type": "application/json",
@@ -23,7 +22,7 @@ def delete_actions(actions):
     }
     response = requests.post(url, json=payload, headers=headers)
     print(response.text)
-    
+
 def main():
     csv = read_csv()
     actions = [row['id'] for row in csv]
@@ -31,4 +30,5 @@ def main():
     for chunk in chunked:
         delete_actions(chunk)
 
-main()
+    main()
+    
