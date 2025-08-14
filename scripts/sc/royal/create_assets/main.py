@@ -16,7 +16,7 @@ def random_id():
 
 def log_results(results_array):
     for row in results_array:
-        asset_id = row["asset_id"]  # Changed from 'id'
+        asset_id = row["asset_id"]
         code = row["code"]
         status = row["status"]
         message = row["message"]
@@ -98,7 +98,7 @@ def create_assets(chunk):
                 delay *= 2
             else:
                 print("Max retries reached. Giving up.")
-                return [], []  # Consistent return type
+                return [], []
 
 def main():
     assets = read_csv()
@@ -112,7 +112,7 @@ def main():
         created, failed = create_assets(chunk)
         created_results = [
             {
-                "asset_id": row["id"],  # Changed from 'id'
+                "asset_id": row["id"],
                 "code": row["code"],
                 "status": "SUCCESS",
                 "message": "SUCCESS",

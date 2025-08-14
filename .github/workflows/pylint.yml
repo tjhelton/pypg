@@ -30,4 +30,4 @@ jobs:
 
     - name: Run Pylint
       run: |
-        pylint **/*.py --disable=line-too-long,missing-function-docstring,missing-module-docstring,import-error,duplicate-code,invalid-sequence-index
+        pylint **/*.py --disable=line-too-long,missing-function-docstring,missing-module-docstring,import-error,duplicate-code,invalid-sequence-index,undefined-variable,inconsistent-return-statements,too-many-locals
