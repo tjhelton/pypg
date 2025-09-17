@@ -4,18 +4,10 @@ import pandas as pd
 
 TOKEN = ''
 
-def read_csv():
-    csv_df = pd.read_csv('input.csv')
-    csv = csv_df.to_dict('records')
-    return csv
-
 def delete_site(site_id, count):
     try:
         url = f"https://api.safetyculture.io/directory/v1/folders?folder_ids={site_id}&cascade_up=true"
-        headers = {
-            "accept": "application/json",
-            "authorization": f"Bearer {TOKEN}"
-        }
+        headers = {"authorization": f"Bearer {TOKEN}"}
         response = requests.delete(url, headers=headers)
         response.raise_for_status()
         status = f"{count} - {site_id} Deleted"
@@ -27,19 +19,11 @@ def delete_site(site_id, count):
         return status
 
 def main():
-    csv_data = read_csv()
-    count = 0
+    csv_data = pd.read_csv('input.csv').to_dict('records')
     output_file = 'output.csv'
-
-    for row in csv_data:
+    for count, row in enumerate(csv_data):
         site_id = row['siteId']
         status = delete_site(site_id, count)
-        df = pd.DataFrame({
-            'count': [count],
-            'SiteID': [site_id],
-            'Status': [status]
-        })
-        df.to_csv(output_file, mode='a', header=not os.path.exists(output_file), index=False)
-        count += 1
+        pd.DataFrame({'count': [count], 'SiteID': [site_id], 'Status': [status]}).to_csv(output_file, mode='a', header=not os.path.exists(output_file), index=False)
 
 main()
