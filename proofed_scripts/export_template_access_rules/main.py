@@ -15,10 +15,11 @@ Output CSV columns:
 - assignee_name: The display name of the user or group
 """
 
-import requests
 import csv
+import sys
 from typing import Dict, List, Optional, Generator
-import os
+
+import requests
 
 # Configuration - Replace 'your_token_here' with your actual SafetyCulture API token
 TOKEN = ''  # Add your API token here
@@ -73,8 +74,7 @@ class SafetyCultureClient:
             response = self._make_request(url)
 
             # Yield each item in the data array
-            for item in response.get('data', []):
-                yield item
+            yield from response.get('data', [])
 
             # Get next page URL from metadata
             metadata = response.get('metadata', {})
@@ -148,8 +148,102 @@ def write_csv_header(csv_writer):
     ])
 
 
+def _fetch_users_lookup(client):
+    """Fetch and build users lookup table"""
+    print("\\n1. Fetching users...")
+    users_lookup = {}
+    user_count = 0
+
+    for user in client.fetch_paginated_feed('/feed/users'):
+        user_id = user.get('id', '')
+        user_name = f"{user.get('firstname', '')} {user.get('lastname', '')}".strip()
+        if not user_name:
+            user_name = user.get('email', 'Unknown User')
+
+        # Transform the ID format
+        transformed_id = client._transform_feed_id(user_id)  # pylint: disable=protected-access
+        users_lookup[transformed_id] = user_name
+        user_count += 1
+
+        if user_count % 100 == 0:
+            print(f"  Processed {user_count} users...")
+
+    print(f"  Completed: {user_count} users loaded")
+    return users_lookup
+
+
+def _fetch_groups_lookup(client):
+    """Fetch and build groups lookup table"""
+    print("\\n2. Fetching groups...")
+    groups_lookup = {}
+    group_count = 0
+
+    for group in client.fetch_paginated_feed('/feed/groups'):
+        group_id = group.get('id', '')
+        group_name = group.get('name', 'Unknown Group')
+
+        # Transform the ID format
+        transformed_id = client._transform_feed_id(group_id)  # pylint: disable=protected-access
+        groups_lookup[transformed_id] = group_name
+        group_count += 1
+
+        if group_count % 50 == 0:
+            print(f"  Processed {group_count} groups...")
+
+    print(f"  Completed: {group_count} groups loaded")
+    return groups_lookup
+
+
+def _process_templates(client, users_lookup, groups_lookup, csv_writer, csv_file):
+    """Process templates and write permission records"""
+    print("\\n3. Processing templates and permissions...")
+    template_count = 0
+    records_written = 0
+
+    for template_summary in client.fetch_paginated_feed('/feed/templates'):
+        template_id = template_summary.get('id', '')
+
+        # Skip archived templates
+        if template_summary.get('archived', False):
+            continue
+
+        # Get detailed template information
+        template_detail = client.get_template_by_id(template_id)
+        if not template_detail:
+            continue
+
+        # Process permissions for this template
+        permission_records = process_template_permissions(
+            template_detail, users_lookup, groups_lookup
+        )
+
+        # Write records to CSV in real-time
+        for record in permission_records:
+            csv_writer.writerow([
+                record['template_id'],
+                record['name'],
+                record['permission'],
+                record['assignee_type'],
+                record['assignee_id'],
+                record['assignee_name']
+            ])
+            records_written += 1
+
+        csv_file.flush()  # Ensure data is written immediately
+
+        template_count += 1
+        if template_count % 10 == 0:
+            print(f"  Processed {template_count} templates, {records_written} permission records written")
+
+    print("\\n Export completed!")
+    print(f"   Templates processed: {template_count}")
+    print(f"   Permission records: {records_written}")
+    return records_written
+
+
 def main():
-    if TOKEN == 'your_token_here':
+    """Main function to export SafetyCulture template access rules"""
+    if TOKEN == 'your_token_here' or not TOKEN:
         print("Error: Please set your SafetyCulture API token in the TOKEN variable")
         return 1
 
@@ -157,109 +251,31 @@ def main():
     print("=" * 50)
 
     client = SafetyCultureClient(BASE_URL, TOKEN)
-
-    # Initialize CSV file for real-time writing
     output_file = 'template_access_rules.csv'
-    csv_file = open(output_file, 'w', newline='', encoding='utf-8')
-    csv_writer = csv.writer(csv_file)
-    write_csv_header(csv_writer)
-    csv_file.flush()
 
     try:
-        # Step 1: Fetch all users and build lookup table
-        print("\n1. Fetching users...")
-        users_lookup = {}
-        user_count = 0
+        with open(output_file, 'w', newline='', encoding='utf-8') as csv_file:
+            csv_writer = csv.writer(csv_file)
+            write_csv_header(csv_writer)
+            csv_file.flush()
 
-        for user in client.fetch_paginated_feed('/feed/users'):
-            user_id = user.get('id', '')
-            user_name = f"{user.get('firstname', '')} {user.get('lastname', '')}".strip()
-            if not user_name:
-                user_name = user.get('email', 'Unknown User')
+            # Fetch all users and build lookup table
+            users_lookup = _fetch_users_lookup(client)
 
-            # Transform the ID format
-            transformed_id = client._transform_feed_id(user_id)
-            users_lookup[transformed_id] = user_name
-            user_count += 1
+            # Fetch all groups and build lookup table
+            groups_lookup = _fetch_groups_lookup(client)
 
-            if user_count % 100 == 0:
-                print(f"  Processed {user_count} users...")
+            # Process templates and write permission records
+            records_written = _process_templates(client, users_lookup, groups_lookup, csv_writer, csv_file)
+            print(f"   Output file: {output_file}")
+            print(f"   Total records written: {records_written}")
 
-        print(f"  Completed: {user_count} users loaded")
-
-        # Step 2: Fetch all groups and build lookup table
-        print("\n2. Fetching groups...")
-        groups_lookup = {}
-        group_count = 0
-
-        for group in client.fetch_paginated_feed('/feed/groups'):
-            group_id = group.get('id', '')
-            group_name = group.get('name', 'Unknown Group')
-
-            # Transform the ID format
-            transformed_id = client._transform_feed_id(group_id)
-            groups_lookup[transformed_id] = group_name
-            group_count += 1
-
-            if group_count % 50 == 0:
-                print(f"  Processed {group_count} groups...")
-
-        print(f"  Completed: {group_count} groups loaded")
-
-        # Step 3: Fetch templates and process permissions
-        print("\n3. Processing templates and permissions...")
-        template_count = 0
-        records_written = 0
-
-        for template_summary in client.fetch_paginated_feed('/feed/templates'):
-            template_id = template_summary.get('id', '')
-
-            # Skip archived templates
-            if template_summary.get('archived', False):
-                continue
-
-            # Get detailed template information
-            template_detail = client.get_template_by_id(template_id)
-            if not template_detail:
-                continue
-
-            # Process permissions for this template
-            permission_records = process_template_permissions(
-                template_detail, users_lookup, groups_lookup
-            )
-
-            # Write records to CSV in real-time
-            for record in permission_records:
-                csv_writer.writerow([
-                    record['template_id'],
-                    record['name'],
-                    record['permission'],
-                    record['assignee_type'],
-                    record['assignee_id'],
-                    record['assignee_name']
-                ])
-                records_written += 1
-
-            csv_file.flush()  # Ensure data is written immediately
-
-            template_count += 1
-            if template_count % 10 == 0:
-                print(f"  Processed {template_count} templates, {records_written} permission records written")
-
-        print(f"\n Export completed!")
-        print(f"   Templates processed: {template_count}")
-        print(f"   Permission records: {records_written}")
-        print(f"   Output file: {output_file}")
-
-    except Exception as e:
-        print(f"\nL Error during export: {e}")
+    except (requests.RequestException, ValueError, IOError) as e:
+        print(f"\\nError during export: {e}")
         return 1
-
-    finally:
-        csv_file.close()
 
     return 0
 
 
 if __name__ == "__main__":
-    exit(main())
+    sys.exit(main())
