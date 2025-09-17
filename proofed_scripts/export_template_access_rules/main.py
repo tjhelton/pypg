@@ -6,6 +6,7 @@ TOKEN = ''  # Add your API token here
 BASE_URL = 'https://api.safetyculture.io'
 
 class SafetyCultureClient:
+    """Client for interacting with SafetyCulture API."""
     def __init__(self, base_url, api_token):
         self.base_url = base_url.rstrip('/')
         self.session = requests.Session()
@@ -16,7 +17,7 @@ class SafetyCultureClient:
         response.raise_for_status()
         return response.json()
 
-    def _transform_feed_id(self, feed_id):
+    def transform_feed_id(self, feed_id):
         if '_' not in feed_id:
             return feed_id
         uuid_part = feed_id.split('_')[1]
@@ -66,14 +67,14 @@ def fetch_users_lookup(client):
     for user in client.fetch_paginated_feed('/feed/users'):
         user_id = user.get('id', '')
         user_name = f"{user.get('firstname', '')} {user.get('lastname', '')}".strip() or user.get('email', 'Unknown User')
-        users_lookup[client._transform_feed_id(user_id)] = user_name
+        users_lookup[client.transform_feed_id(user_id)] = user_name
     return users_lookup
 
 def fetch_groups_lookup(client):
     groups_lookup = {}
     for group in client.fetch_paginated_feed('/feed/groups'):
         group_id = group.get('id', '')
-        groups_lookup[client._transform_feed_id(group_id)] = group.get('name', 'Unknown Group')
+        groups_lookup[client.transform_feed_id(group_id)] = group.get('name', 'Unknown Group')
     return groups_lookup
 
 def main():
