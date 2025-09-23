@@ -9,12 +9,12 @@ import asyncio
 import os
 import random
 import time
+import traceback
 from datetime import datetime
 from typing import List, Optional
 
 import aiohttp
 import pandas as pd
-import traceback
 
 
 # Configuration
