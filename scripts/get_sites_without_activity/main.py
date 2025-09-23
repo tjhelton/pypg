@@ -1,15 +1,18 @@
 import asyncio
-import aiohttp
 import csv
 import os
+import time
 from datetime import datetime
 from typing import Dict, List, Set
-import time
 
-TOKEN = ''
+import aiohttp
+
+TOKEN = os.environ.get('SAFETYCULTURE_TOKEN', '')
 BASE_URL = "https://api.safetyculture.io"
 
 class SafetyCultureAPI:
+    """SafetyCulture API client."""
+
     def __init__(self, max_concurrent_requests=20):
         self.headers = {
             "accept": "application/json",
@@ -233,7 +236,7 @@ async def main():
     print(f"🎯 Sites with Activity: {len(sites_with_activity):,}")
     print(f"⚪ Sites without Activity: {len(sites_without_activity):,}")
     print(f"📊 Percentage without Activity: {(len(sites_without_activity)/len(sites)*100):.1f}%")
-    print(f"\n🚀 TIMING BREAKDOWN:")
+    print("\n🚀 TIMING BREAKDOWN:")
     print(f"  🏁 API Fetching: {fetch_time:.1f}s ({(len(inspections)+len(sites))/fetch_time:.0f} records/sec)")
     print(f"  📊 Data Processing: {process_time:.1f}s")
     print(f"  💾 File Saving: {save_time:.1f}s")
