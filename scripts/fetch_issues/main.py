@@ -14,6 +14,7 @@ from typing import List, Optional
 
 import aiohttp
 import pandas as pd
+import traceback
 
 
 # Configuration
@@ -21,7 +22,9 @@ SC_API_BASE_URL = "https://api.safetyculture.io"
 SC_API_TOKEN = os.getenv("SC_API_TOKEN")
 
 
-class IssuesExtractor:
+class IssuesExtractor:  # pylint: disable=too-many-instance-attributes
+    """Class to extract issues from SafetyCulture API."""
+
     def __init__(self, output_dir: str = "."):
         """Initialize the issues extractor."""
         self.output_dir = output_dir
@@ -54,7 +57,7 @@ class IssuesExtractor:
         for attempt in range(self.max_retries):
             try:
                 return await func(*args, **kwargs)
-            except Exception as e:
+            except Exception as e:  # pylint: disable=broad-exception-caught
                 if attempt == self.max_retries - 1:
                     print(f"Final async attempt failed: {e}")
                     raise
@@ -79,7 +82,7 @@ class IssuesExtractor:
 
         try:
             return await self.retry_async_call(make_request)
-        except Exception as e:
+        except Exception as e:  # pylint: disable=broad-exception-caught
             print(f"Error fetching {url} after all retries: {e}")
             return {"data": [], "metadata": {}}
 
@@ -265,7 +268,7 @@ class IssuesExtractor:
 
                 processed_issues.append(processed_issue)
 
-            except Exception as e:
+            except Exception as e:  # pylint: disable=broad-exception-caught
                 print(f"Error processing issue {issue.get('task_id', 'unknown')}: {e}")
                 continue
 
@@ -333,7 +336,7 @@ class IssuesExtractor:
         issues_df = self.process_issues_to_csv()
 
         # Export processed issues to CSV
-        processed_file = self.export_processed_issues_to_csv(issues_df, output_dir)
+        self.export_processed_issues_to_csv(issues_df, output_dir)
 
         print("\n✓ Issues extraction completed successfully!")
         print(f"  Issues processed: {len(issues_df)}")
@@ -351,9 +354,8 @@ async def main():
         extractor = IssuesExtractor()
         await extractor.run_extraction()
         return 0
-    except Exception as e:
+    except Exception as e:  # pylint: disable=broad-exception-caught
         print(f"Error during extraction: {e}")
-        import traceback
         traceback.print_exc()
         return 1
 
