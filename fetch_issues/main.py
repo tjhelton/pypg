@@ -18,7 +18,7 @@ import pandas as pd
 
 # Configuration
 SC_API_BASE_URL = "https://api.safetyculture.io"
-SC_API_TOKEN = os.getenv("SC_API_TOKEN")
+TOKEN = ''  # Add your SafetyCulture API token here
 
 
 class IssuesExtractor:  # pylint: disable=too-many-instance-attributes
@@ -28,7 +28,7 @@ class IssuesExtractor:  # pylint: disable=too-many-instance-attributes
         """Initialize the issues extractor."""
         self.output_dir = output_dir
         self.api_base_url = SC_API_BASE_URL
-        self.api_token = SC_API_TOKEN
+        self.api_token = TOKEN
 
         # Data containers
         self.issues_data = []
@@ -332,7 +332,7 @@ class IssuesExtractor:  # pylint: disable=too-many-instance-attributes
         print("=" * 35)
 
         if not self.api_token:
-            raise ValueError("SC_API_TOKEN environment variable is required")
+            raise ValueError("TOKEN must be set with your SafetyCulture API token")
 
         # Fetch all data
         await self.fetch_all_data_concurrent()

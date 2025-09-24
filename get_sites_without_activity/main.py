@@ -7,7 +7,7 @@ from typing import Dict, List, Set
 
 import aiohttp
 
-TOKEN = os.environ.get('SAFETYCULTURE_TOKEN', '')
+TOKEN = ''  # Add your SafetyCulture API token here
 BASE_URL = "https://api.safetyculture.io"
 
 
@@ -198,8 +198,8 @@ def write_csv(data: List[Dict], filename: str):
 async def main():
     """Main execution function"""
     if not TOKEN:
-        print("❌ Error: SAFETYCULTURE_TOKEN environment variable not set")
-        print("Please set your token: export SAFETYCULTURE_TOKEN='your_token_here'")
+        print("❌ Error: TOKEN not set in script")
+        print("Please set your token in the TOKEN variable at the top of main.py")
         return
 
     print(

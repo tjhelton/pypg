@@ -12,6 +12,10 @@ open_api_spec.json
 # Claude Code
 .claude/
 Prompt.md
+CLAUDE.md
+
+# VSCode
+.vscode/
 
 # Script input/output files (to prevent accidental commits of sensitive data)
 input.csv
