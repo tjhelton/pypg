@@ -68,6 +68,8 @@ def run_linters(fix_mode: bool = False) -> bool:
         "../archive_templates/*.py",
         "../create_groups/*.py",
         "../create_sites/*.py",
+        "../delete_actions/*.py",
+        "../delete_assets/*.py",
         "../delete_sites/*.py",
         "../export_asset_types/*.py",
         "../export_template_access_rules/*.py",

@@ -4,20 +4,20 @@ Fetches all SafetyCulture issues via API with detailed information including ass
 
 ## Quick Start
 
-1. **Set environment variable**: `export SC_API_TOKEN="your_api_token_here"`
-2. **Install dependencies**: `pip install aiohttp asyncio pandas`
+1. **Install dependencies**: `pip install aiohttp asyncio pandas`
+2. **Set API token**: Replace `TOKEN = ''` in `main.py` with your SafetyCulture API token
 3. **Run script**: `python main.py`
 4. **Check output**: Find timestamped directory with CSV files
 
 ## Prerequisites
 
 - Python 3.8+ with asyncio support
-- Valid SafetyCulture API token (environment variable)
+- Valid SafetyCulture API token
 - API access to issues, timeline items, and assignees
 
 ## Input Format
 
-No input file required - fetches all issues from organization using environment variable for authentication.
+No input file required - fetches all issues from organization using API token configured in script.
 
 ## Output
 
