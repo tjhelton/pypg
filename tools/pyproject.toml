@@ -6,6 +6,8 @@ include = '''(
   archive_templates/.*\.py$
   | create_groups/.*\.py$
   | create_sites/.*\.py$
+  | delete_actions/.*\.py$
+  | delete_assets/.*\.py$
   | delete_sites/.*\.py$
   | export_asset_types/.*\.py$
   | export_template_access_rules/.*\.py$
@@ -47,6 +49,8 @@ src_paths = [
     "../archive_templates",
     "../create_groups",
     "../create_sites",
+    "../delete_actions",
+    "../delete_assets",
     "../delete_sites",
     "../export_asset_types",
     "../export_template_access_rules",
@@ -90,6 +94,8 @@ files = [
     "../archive_templates",
     "../create_groups",
     "../create_sites",
+    "../delete_actions",
+    "../delete_assets",
     "../delete_sites",
     "../export_asset_types",
     "../export_template_access_rules",

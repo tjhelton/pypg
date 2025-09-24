@@ -4,20 +4,20 @@ Identifies SafetyCulture sites with no inspection activity via API. Compares all
 
 ## Quick Start
 
-1. **Install dependencies**: `pip install requests`
-2. **Set environment variable**: `export SAFETYCULTURE_TOKEN="your_api_token_here"`
+1. **Install dependencies**: `pip install aiohttp asyncio pandas`
+2. **Set API token**: Replace `TOKEN = ''` in `main.py` with your SafetyCulture API token
 3. **Run script**: `python main.py`
 4. **Check output**: Find timestamped CSV files in `output/` directory
 
 ## Prerequisites
 
-- Python 3.7+ and pip
-- Valid SafetyCulture API token (environment variable)
+- Python 3.8+ with asyncio support
+- Valid SafetyCulture API token
 - API access to inspections and sites feeds
 
 ## Input Format
 
-No input file required - fetches all organizational data using environment variable for authentication.
+No input file required - fetches all organizational data using API token configured in script.
 
 ## Output
 
@@ -33,6 +33,6 @@ Creates timestamped CSV files in `output/` directory:
 
 ## Notes
 
-- Uses ThreadPoolExecutor for concurrent data fetching
+- Uses async/await for concurrent data fetching
 - Processes only leaf node sites (excludes deleted)
 - Provides detailed console logging with progress tracking

@@ -23,6 +23,8 @@ python main.py
 
 ## 📁 Available Scripts
 
+> **💡 Each script has its own README with detailed setup instructions, input formats, and usage examples. Click any script link below to view its complete documentation.**
+
 ### Template Management
 - **[archive_templates/](archive_templates/)** - Archive SafetyCulture templates in bulk
 - **[export_template_access_rules/](export_template_access_rules/)** - Export template permission matrices
@@ -35,10 +37,12 @@ python main.py
 - **[set_inspection_site/](set_inspection_site/)** - Configure audit-site relationships
 - **[update_user_sites/](update_user_sites/)** - Bulk update user site assignments
 
-### Issues & Assets
+### Issues, Actions & Assets
+- **[delete_actions/](delete_actions/)** - Delete SafetyCulture actions in bulk (batches of 300)
+- **[delete_assets/](delete_assets/)** - Archive SafetyCulture assets with detailed logging
+- **[export_asset_types/](export_asset_types/)** - Export asset type definitions
 - **[fetch_issues/](fetch_issues/)** - Extract all issues with detailed tracking data
 - **[get_public_issue_links/](get_public_issue_links/)** - Generate public sharing links
-- **[export_asset_types/](export_asset_types/)** - Export asset type definitions
 
 ## 🛠️ Development
 
