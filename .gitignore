@@ -31,7 +31,6 @@ log_output.csv
 *.xls
 *.json
 *.xml
-*.txt
 !requirements.txt
 !README.txt
 
