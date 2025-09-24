@@ -11,6 +11,35 @@ open_api_spec.json
 
 # Claude Code
 .claude/
+Prompt.md
+
+# Script input/output files (to prevent accidental commits of sensitive data)
+input.csv
+output.csv
+log_output.csv
+**/input.csv
+**/output.csv
+**/log_output.csv
+*.csv
+!README.csv
+!example.csv
+!template.csv
+!sample.csv
+
+# Common data file extensions
+*.xlsx
+*.xls
+*.json
+*.xml
+*.txt
+!requirements.txt
+!README.txt
+
+# Temporary and cache files
+*.tmp
+*.temp
+*.cache
+.DS_Store
 
 # Distribution / packaging
 .Python
