@@ -61,9 +61,9 @@ make pre-commit
 ```
 
 ### GitHub Actions
-- Automated linting on all pull requests
-- Python 3.8-3.12 compatibility testing
-- Code quality enforcement
+- Automated code quality checks on all pull requests
+- Linting and formatting validation
+- Ensures consistent code standards
 
 ## 📋 Prerequisites
 
