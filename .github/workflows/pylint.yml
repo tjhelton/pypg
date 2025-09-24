@@ -1,4 +1,4 @@
-name: Run Pylint
+name: Code Quality
 
 on:
   push:
@@ -10,24 +10,48 @@ on:
   workflow_dispatch:
 
 jobs:
-  pylint:
-    name: Pylint
+  lint:
+    name: Lint and Format
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8, 3.9, '3.10', '3.11', '3.12']
 
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
 
-    - name: Set up Python
+    - name: Set up Python ${{ matrix.python-version }}
       uses: actions/setup-python@v4
       with:
-        python-version: '3.13'  
+        python-version: ${{ matrix.python-version }}
 
-    - name: Install dependencies
+    - name: Install development dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install pylint
+        cd tools/
+        pip install -r requirements-dev.txt
 
-    - name: Run Pylint
+    - name: Check dependencies
       run: |
-        pylint **/*.py --disable=line-too-long,missing-function-docstring,missing-module-docstring,import-error,duplicate-code,invalid-sequence-index,undefined-variable,inconsistent-return-statements,too-many-locals
+        cd tools/
+        make check-deps
+
+    - name: Run linters
+      run: |
+        cd tools/
+        make lint
+
+    - name: Check if auto-fix would make changes
+      run: |
+        cd tools/
+        # Run fix in dry-run mode to see what would change
+        python3 lint-and-fix.py --fix
+        # Check if there are any changes
+        if [ -n "$(git status --porcelain)" ]; then
+          echo "❌ Code formatting issues found. Run 'cd tools && make fix' to fix them."
+          git diff --color=always
+          exit 1
+        else
+          echo "✅ Code formatting is correct."
+        fi
