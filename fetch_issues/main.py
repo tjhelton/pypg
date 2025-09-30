@@ -18,7 +18,7 @@ import pandas as pd
 
 # Configuration
 SC_API_BASE_URL = "https://api.safetyculture.io"
-TOKEN = ''  # Add your SafetyCulture API token here
+TOKEN = ""  # Add your SafetyCulture API token here
 
 
 class IssuesExtractor:  # pylint: disable=too-many-instance-attributes
