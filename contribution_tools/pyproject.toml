@@ -24,7 +24,7 @@ extend-exclude = '''
   venv
   | \.venv
   | dump
-  | tools
+  | contribution_tools
   | \.git
   | __pycache__
   | \.mypy_cache
@@ -64,7 +64,7 @@ skip_glob = [
     "venv/*",
     ".venv/*",
     "dump/*",
-    "tools/*",
+    "contribution_tools/*",
     "__pycache__/*"
 ]
 # Conservative import grouping to preserve functionality
@@ -109,7 +109,7 @@ exclude = [
     'venv/',
     '.venv/',
     'dump/',
-    'tools/',
+    'contribution_tools/',
     '__pycache__/',
 ]
 
@@ -146,7 +146,7 @@ exclude = [
     "venv",
     ".venv",
     "dump",
-    "tools",
+    "contribution_tools",
     "build",
     "dist",
     "*.egg-info",
