@@ -30,6 +30,9 @@ log_output.csv
 !template.csv
 !sample.csv
 
+# Issues export directories (timestamped output from fetch_issues)
+issues_export_*/
+
 # Common data file extensions
 *.xlsx
 *.xls
