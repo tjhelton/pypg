@@ -10,7 +10,7 @@ git clone https://github.com/your-username/py-sc.git
 cd py-sc
 
 # Set up development environment
-cd tools/
+cd contribution_tools/
 make install
 make pre-commit
 
@@ -47,10 +47,10 @@ python main.py
 ## 🛠️ Development
 
 ### Code Quality
-This project uses automated linting and formatting tools. **All linting commands must be run from the `tools/` directory**:
+This project uses automated linting and formatting tools. **All linting commands must be run from the `contribution_tools/` directory**:
 
 ```bash
-cd tools/
+cd contribution_tools/
 make lint      # Check code quality
 make fix       # Auto-fix formatting issues
 make help      # See all available commands
@@ -60,7 +60,7 @@ make help      # See all available commands
 Automatically format and lint code before commits:
 
 ```bash
-cd tools/
+cd contribution_tools/
 make pre-commit
 ```
 
@@ -122,7 +122,7 @@ Most scripts expect `input.csv` with relevant IDs or parameters. See individual 
 
 1. Fork the repository
 2. Create a feature branch
-3. Follow our [contribution guide](tools/CONTRIBUTE.md)
+3. Follow our [contribution guide](contribution_tools/CONTRIBUTE.md)
 4. Run `make lint` before committing
 5. Submit a pull request
 
