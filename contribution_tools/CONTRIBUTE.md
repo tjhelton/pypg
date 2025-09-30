@@ -5,8 +5,8 @@ Welcome! This guide will help you contribute to the py-sc repository while maint
 ## 🚀 Quick Start for Contributors
 
 ```bash
-# 1. Navigate to the tools directory
-cd tools/
+# 1. Navigate to the contribution_tools directory
+cd contribution_tools/
 
 # 2. Install development dependencies
 make install
@@ -79,7 +79,7 @@ Our linting system only checks the actual script directories:
 - `set_inspection_site/`
 - `update_user_sites/`
 
-**Excluded from linting**: `venv/`, `dump/`, `tools/`, `.git/`, `__pycache__/`
+**Excluded from linting**: `venv/`, `dump/`, `contribution_tools/`, `.git/`, `__pycache__/`
 
 ### Linting Tools Used
 
@@ -154,19 +154,19 @@ py-sc/
 
 **"Command not found" errors**
 ```bash
-cd tools/
+cd contribution_tools/
 make install
 ```
 
 **Pre-commit hooks not running**
 ```bash
-cd tools/
+cd contribution_tools/
 make pre-commit
 ```
 
 **Linting fails after making changes**
 ```bash
-cd tools/
+cd contribution_tools/
 make fix  # Auto-fix what can be fixed
 make lint # Check remaining issues
 ```
@@ -175,7 +175,7 @@ make lint # Check remaining issues
 Make sure you're in the py-sc root, not inside venv/:
 ```bash
 pwd  # Should show .../py-sc, not .../py-sc/venv
-cd tools/
+cd contribution_tools/
 make install
 ```
 
