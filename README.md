@@ -1,4 +1,4 @@
-# pypg
+# py-sc
 
 A collection of Python automation scripts for SafetyCulture API operations. Provides tools for bulk management of templates, sites, issues, and other SafetyCulture resources.
 
@@ -6,8 +6,8 @@ A collection of Python automation scripts for SafetyCulture API operations. Prov
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/pypg.git
-cd pypg
+git clone https://github.com/your-username/py-sc.git
+cd py-sc
 
 # Set up development environment
 cd tools/
