@@ -1,6 +1,6 @@
-# Contributing to pypg
+# Contributing to py-sc
 
-Welcome! This guide will help you contribute to the pypg repository while maintaining code quality and consistency.
+Welcome! This guide will help you contribute to the py-sc repository while maintaining code quality and consistency.
 
 ## 🚀 Quick Start for Contributors
 
@@ -126,7 +126,7 @@ When you run `make fix`, the system will:
 ## 📁 Project Structure
 
 ```
-pypg/
+py-sc/
 ├── archive_templates/              # Script: SafetyCulture template archiver
 ├── create_groups/                  # Script: Group creation functionality
 ├── create_sites/                   # Script: SafetyCulture site creator
@@ -172,9 +172,9 @@ make lint # Check remaining issues
 ```
 
 **Virtual environment conflicts**
-Make sure you're in the pypg root, not inside venv/:
+Make sure you're in the py-sc root, not inside venv/:
 ```bash
-pwd  # Should show .../pypg, not .../pypg/venv
+pwd  # Should show .../py-sc, not .../py-sc/venv
 cd tools/
 make install
 ```
@@ -219,4 +219,4 @@ make install
 
 ---
 
-Thank you for contributing to pypg! Your improvements help make SafetyCulture API automation better for everyone. 🚀
+Thank you for contributing to py-sc! Your improvements help make SafetyCulture API automation better for everyone. 🚀
