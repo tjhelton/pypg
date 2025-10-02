@@ -4,7 +4,7 @@ Exports all SafetyCulture asset types via API. Fetches asset type information an
 
 ## Quick Start
 
-1. **Install dependencies**: `pip install requests`
+1. **Install dependencies**: `pip install -r ../requirements.txt`
 2. **Set API token**: Replace `TOKEN = ''` in `main.py` with your SafetyCulture API token
 3. **Run script**: `python main.py`
 4. **Check output**: Find timestamped CSV file (e.g., `asset_types_20241201_143022.csv`)
