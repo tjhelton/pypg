@@ -7,14 +7,14 @@ from typing import Dict, List, Set
 
 import aiohttp
 
-TOKEN = ''  # Add your SafetyCulture API token here
+TOKEN = ""
 BASE_URL = "https://api.safetyculture.io"
 
 
 class SafetyCultureAPI:
     """SafetyCulture API client."""
 
-    def __init__(self, max_concurrent_requests=20):
+    def __init__(self, max_concurrent_requests=25):
         self.headers = {
             "accept": "application/json",
             "authorization": f"Bearer {TOKEN}",
@@ -26,12 +26,12 @@ class SafetyCultureAPI:
     async def __aenter__(self):
         # Create session with connection pooling
         connector = aiohttp.TCPConnector(
-            limit=100,  # Total connection pool size
-            limit_per_host=30,  # Max connections per host
-            ttl_dns_cache=300,  # DNS cache TTL
+            limit=100,
+            limit_per_host=30,
+            ttl_dns_cache=300,
             use_dns_cache=True,
         )
-        timeout = aiohttp.ClientTimeout(total=30, connect=10)
+        timeout = aiohttp.ClientTimeout(total=60, connect=10)
         self.session = aiohttp.ClientSession(
             headers=self.headers, connector=connector, timeout=timeout
         )
@@ -49,101 +49,103 @@ class SafetyCultureAPI:
                 async with self.session.get(url) as response:
                     response.raise_for_status()
                     return await response.json()
-            except asyncio.TimeoutError:
-                print(f"⚠️  Timeout for URL: {url}")
-                raise
             except Exception as e:
                 print(f"❌ Error fetching {url}: {e}")
                 raise
 
-    async def fetch_all_data_optimized(
-        self, initial_url: str, data_type: str
-    ) -> List[Dict]:
-        """Optimized fetching with concurrent pagination and batching"""
-        print(f"🚀 Starting optimized {data_type} fetch...")
+    async def fetch_all_inspections(self) -> List[Dict]:
+        """Fetch all inspections - sequential pagination with progress tracking"""
+        initial_url = f"{BASE_URL}/feed/inspections?archived=false&completed=both"
+        print("🚀 Starting inspection fetch...")
+
         all_data = []
-
-        # Use a queue to manage URLs to fetch
-        url_queue = asyncio.Queue()
-        await url_queue.put(initial_url)
-
-        fetched_urls = set()
+        url = initial_url
         page_count = 0
-        batch_size = 15  # Fetch 15 pages concurrently
+        start_time = time.time()
 
-        while not url_queue.empty():
-            # Collect URLs for current batch
-            current_batch = []
-            for _ in range(min(batch_size, url_queue.qsize())):
-                if not url_queue.empty():
-                    url = await url_queue.get()
-                    if url not in fetched_urls:
-                        current_batch.append(url)
-                        fetched_urls.add(url)
+        while url:
+            try:
+                response = await self.fetch_page(url)
+                data = response.get("data", [])
+                all_data.extend(data)
+                page_count += 1
 
-            if not current_batch:
+                # Get metadata for remaining records
+                metadata = response.get("metadata", {})
+                remaining_records = metadata.get("remaining_records", 0)
+
+                # Calculate time estimates
+                elapsed = time.time() - start_time
+                rate = page_count / elapsed if elapsed > 0 else 0
+
+                if remaining_records > 0 and rate > 0:
+                    remaining_pages = remaining_records / 25  # 25 records per page
+                    estimated_time_remaining = remaining_pages / rate
+                    eta_minutes = int(estimated_time_remaining // 60)
+                    eta_seconds = int(estimated_time_remaining % 60)
+                    eta_str = f"{eta_minutes}m {eta_seconds}s"
+                else:
+                    eta_str = "calculating..."
+
+                # Real-time logging for every page
+                print(
+                    f"  📄 Page {page_count}: {len(data)} records | Total: {len(all_data):,} | Remaining: {remaining_records:,} | Rate: {rate:.2f} pages/sec | ETA: {eta_str}"
+                )
+
+                # Get next page URL
+                next_url = metadata.get("next_page")
+                if next_url:
+                    if not next_url.startswith("http"):
+                        next_url = f"{BASE_URL}{next_url}"
+                    url = next_url
+                else:
+                    url = None
+
+            except Exception as e:
+                print(f"❌ Error on page {page_count}: {e}")
                 break
 
-            page_count += len(current_batch)
-            print(
-                f"  ⚡ Fetching batch of {len(current_batch)} pages (total pages: {page_count})"
-            )
-
-            batch_start = time.time()
-
-            # Fetch current batch concurrently
-            tasks = [self.fetch_page(url) for url in current_batch]
-            responses = await asyncio.gather(*tasks, return_exceptions=True)
-
-            batch_time = time.time() - batch_start
-            batch_count = 0
-
-            # Process responses and queue next pages
-            for i, response in enumerate(responses):
-                if isinstance(response, Exception):
-                    print(f"    ❌ Error in page {i+1}: {response}")
-                    continue
-
-                data = response.get('data', [])
-                all_data.extend(data)
-                batch_count += len(data)
-
-                # Queue next page if it exists
-                metadata = response.get('metadata', {})
-                next_url = metadata.get('next_page')
-                if next_url:
-                    if not next_url.startswith('http'):
-                        next_url = f"{BASE_URL}{next_url}"
-                    if next_url not in fetched_urls:
-                        await url_queue.put(next_url)
-
-            remaining_in_queue = url_queue.qsize()
-            total_records = len(all_data)
-            rate = len(current_batch) / batch_time if batch_time > 0 else 0
-
-            print(
-                f"    ✅ Batch completed: {batch_count} records in {batch_time:.1f}s ({rate:.1f} pages/sec)"
-            )
-            print(
-                f"    📊 Total: {total_records:,} records, {remaining_in_queue} pages queued"
-            )
-
+        elapsed = time.time() - start_time
+        rate = page_count / elapsed if elapsed > 0 else 0
         print(
-            f"🎉 Completed {data_type} fetch: {len(all_data):,} total records from {page_count} pages"
+            f"🎉 Completed inspection fetch: {len(all_data):,} records from {page_count} pages in {elapsed:.1f}s ({rate:.1f} pages/sec)"
         )
         return all_data
 
-    async def fetch_all_inspections(self) -> List[Dict]:
-        """Fetch all inspections with concurrent pagination"""
-        initial_url = f"{BASE_URL}/feed/inspections?archived=false&completed=both"
-        return await self.fetch_all_data_optimized(initial_url, "inspection")
-
     async def fetch_all_sites(self) -> List[Dict]:
-        """Fetch all sites with concurrent pagination (only leaf nodes, not deleted)"""
-        initial_url = (
-            f"{BASE_URL}/feed/sites?include_deleted=false&show_only_leaf_nodes=true"
+        """Fetch all folders (sites) using directory API"""
+        initial_url = f"{BASE_URL}/directory/v1/folders?page_size=1500"
+        print("🚀 Starting folder fetch...")
+
+        all_data = []
+        url = initial_url
+        page_count = 0
+        start_time = time.time()
+
+        while url:
+            try:
+                response = await self.fetch_page(url)
+                folders = response.get("folders", [])
+                all_data.extend(folders)
+                page_count += 1
+
+                # Get next page URL
+                next_page_token = response.get("next_page_token")
+                if next_page_token:
+                    base_url = url.split("?")[0]
+                    url = f"{base_url}?page_size=1500&page_token={next_page_token}"
+                else:
+                    url = None
+
+            except Exception as e:
+                print(f"❌ Error on page {page_count}: {e}")
+                break
+
+        elapsed = time.time() - start_time
+        print(
+            f"🎉 Completed folder fetch: {len(all_data):,} records from {page_count} pages in {elapsed:.1f}s"
         )
-        return await self.fetch_all_data_optimized(initial_url, "site")
+        return all_data
 
 
 def get_sites_with_activity(inspections: List[Dict]) -> Set[str]:
@@ -151,7 +153,7 @@ def get_sites_with_activity(inspections: List[Dict]) -> Set[str]:
     sites_with_activity = set()
 
     for inspection in inspections:
-        site_id = inspection.get('site_id')
+        site_id = inspection.get("site_id")
         if site_id:
             sites_with_activity.add(site_id)
 
@@ -166,7 +168,7 @@ def find_sites_without_activity(
     sites_without_activity = []
 
     for site in sites:
-        site_id = site.get('id')  # Sites use 'id' field
+        site_id = site.get("id")
         if site_id and site_id not in sites_with_activity:
             sites_without_activity.append(site)
 
@@ -174,6 +176,20 @@ def find_sites_without_activity(
         f"📊 {len(sites_without_activity)} out of {len(sites)} sites have no inspection activity"
     )
     return sites_without_activity
+
+
+def get_next_output_dir() -> str:
+    """Find the next available output directory (output, output_1, output_2, etc.)"""
+    base_dir = "output"
+    if not os.path.exists(base_dir):
+        return base_dir
+
+    index = 1
+    while True:
+        indexed_dir = f"{base_dir}_{index}"
+        if not os.path.exists(indexed_dir):
+            return indexed_dir
+        index += 1
 
 
 def write_csv(data: List[Dict], filename: str):
@@ -185,7 +201,7 @@ def write_csv(data: List[Dict], filename: str):
     # Ensure directory exists
     os.makedirs(os.path.dirname(filename), exist_ok=True)
 
-    with open(filename, 'w', newline='', encoding='utf-8') as csvfile:
+    with open(filename, "w", newline="", encoding="utf-8") as csvfile:
         if data:
             fieldnames = data[0].keys()
             writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
@@ -202,9 +218,9 @@ async def main():
         print("Please set your token in the TOKEN variable at the top of main.py")
         return
 
-    print(
-        "🚀 Starting SafetyCulture Sites Without Activity Analysis (High Performance Mode)"
-    )
+    print("🚀 Starting SafetyCulture Sites Without Activity Analysis")
+    print("=" * 80)
+    print("📊 Expected runtime: ~25-30 minutes for ~69K inspections")
     print("=" * 80)
 
     start_time = datetime.now()
@@ -233,18 +249,15 @@ async def main():
     sites_without_activity = find_sites_without_activity(sites, sites_with_activity)
     process_time = time.time() - process_start
 
-    # Generate timestamp for filenames
-    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-    output_dir = "output"
+    # Get next available output directory
+    output_dir = get_next_output_dir()
 
     # Write results to CSV files
-    print("\n💾 Saving results...")
+    print(f"\n💾 Saving results to {output_dir}/...")
     save_start = time.time()
-    write_csv(
-        sites_without_activity, f"{output_dir}/sites_without_activity_{timestamp}.csv"
-    )
-    write_csv(inspections, f"{output_dir}/all_inspections_{timestamp}.csv")
-    write_csv(sites, f"{output_dir}/all_sites_{timestamp}.csv")
+    write_csv(sites_without_activity, f"{output_dir}/sites_without_activity.csv")
+    write_csv(inspections, f"{output_dir}/all_inspections.csv")
+    write_csv(sites, f"{output_dir}/all_sites.csv")
     save_time = time.time() - save_start
 
     # Summary
@@ -262,9 +275,7 @@ async def main():
         f"📊 Percentage without Activity: {(len(sites_without_activity)/len(sites)*100):.1f}%"
     )
     print("\n🚀 TIMING BREAKDOWN:")
-    print(
-        f"  🏁 API Fetching: {fetch_time:.1f}s ({(len(inspections)+len(sites))/fetch_time:.0f} records/sec)"
-    )
+    print(f"  🏁 API Fetching: {fetch_time:.1f}s")
     print(f"  📊 Data Processing: {process_time:.1f}s")
     print(f"  💾 File Saving: {save_time:.1f}s")
     print(f"  ⏱️  Total Runtime: {duration.total_seconds():.1f}s")
