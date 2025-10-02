@@ -1,0 +1,11 @@
+# SafetyCulture API Scripts - Python Dependencies
+# Install all dependencies: pip install -r requirements.txt
+
+# Core data manipulation and HTTP libraries
+# Used by all scripts for CSV processing and API requests
+pandas>=2.0.0
+requests>=2.31.0
+
+# Async HTTP library
+# Required by: fetch_issues, get_sites_without_activity
+aiohttp>=3.9.0
