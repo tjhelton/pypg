@@ -9,14 +9,16 @@ A collection of Python automation scripts for SafetyCulture API operations. Prov
 git clone https://github.com/your-username/py-sc.git
 cd py-sc
 
-# Set up development environment
+# Install dependencies
+pip install -r requirements.txt
+
+# Set up development environment (optional)
 cd contribution_tools/
 make install
 make pre-commit
 
 # Run any script
 cd ../archive_templates/
-pip install pandas requests
 # Set your API token in main.py
 python main.py
 ```
@@ -75,18 +77,23 @@ make pre-commit
 - **SafetyCulture API Token** - [Get yours here](https://developer.safetyculture.com/reference/getting-started)
 - **API Access** - Appropriate permissions for your use case
 
-## 🔧 Common Dependencies
+## 🔧 Dependencies
 
-Most scripts use these libraries:
+Install all required dependencies for the scripts:
 ```bash
-pip install pandas requests aiohttp
+pip install -r requirements.txt
 ```
+
+This installs:
+- **pandas** - CSV data processing and manipulation
+- **requests** - HTTP requests to SafetyCulture API
+- **aiohttp** - Async HTTP requests (for concurrent processing scripts)
 
 ## 📖 Usage Patterns
 
 ### Standard Workflow
-1. Navigate to desired script directory
-2. Install script-specific dependencies
+1. Install dependencies: `pip install -r requirements.txt`
+2. Navigate to desired script directory
 3. Set API token in `main.py` or environment variable
 4. Prepare `input.csv` (if required)
 5. Run `python main.py`
