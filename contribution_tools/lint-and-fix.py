@@ -65,19 +65,19 @@ def run_linters(fix_mode: bool = False) -> bool:
 
     # Only target script directories to preserve functionality
     script_patterns = [
-        "../archive_templates/*.py",
-        "../create_groups/*.py",
-        "../create_sites/*.py",
-        "../delete_actions/*.py",
-        "../delete_assets/*.py",
-        "../delete_sites/*.py",
-        "../export_asset_types/*.py",
-        "../export_template_access_rules/*.py",
-        "../fetch_issues/*.py",
-        "../get_public_issue_links/*.py",
-        "../get_sites_without_activity/*.py",
-        "../set_inspection_site/*.py",
-        "../update_user_sites/*.py"
+        "../scripts/archive_templates/*.py",
+        "../scripts/create_groups/*.py",
+        "../scripts/create_sites/*.py",
+        "../scripts/delete_actions/*.py",
+        "../scripts/delete_assets/*.py",
+        "../scripts/delete_sites/*.py",
+        "../scripts/export_asset_types/*.py",
+        "../scripts/export_template_access_rules/*.py",
+        "../scripts/fetch_issues/*.py",
+        "../scripts/get_public_issue_links/*.py",
+        "../scripts/get_sites_without_activity/*.py",
+        "../scripts/set_inspection_site/*.py",
+        "../scripts/update_user_sites/*.py"
     ]
 
     # Expand glob patterns to find actual files

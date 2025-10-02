@@ -3,19 +3,19 @@ line-length = 88
 target-version = ['py38']
 # Only target script directories, exclude everything else
 include = '''(
-  archive_templates/.*\.py$
-  | create_groups/.*\.py$
-  | create_sites/.*\.py$
-  | delete_actions/.*\.py$
-  | delete_assets/.*\.py$
-  | delete_sites/.*\.py$
-  | export_asset_types/.*\.py$
-  | export_template_access_rules/.*\.py$
-  | fetch_issues/.*\.py$
-  | get_public_issue_links/.*\.py$
-  | get_sites_without_activity/.*\.py$
-  | set_inspection_site/.*\.py$
-  | update_user_sites/.*\.py$
+  scripts/archive_templates/.*\.py$
+  | scripts/create_groups/.*\.py$
+  | scripts/create_sites/.*\.py$
+  | scripts/delete_actions/.*\.py$
+  | scripts/delete_assets/.*\.py$
+  | scripts/delete_sites/.*\.py$
+  | scripts/export_asset_types/.*\.py$
+  | scripts/export_template_access_rules/.*\.py$
+  | scripts/fetch_issues/.*\.py$
+  | scripts/get_public_issue_links/.*\.py$
+  | scripts/get_sites_without_activity/.*\.py$
+  | scripts/set_inspection_site/.*\.py$
+  | scripts/update_user_sites/.*\.py$
 )
 '''
 extend-exclude = '''
@@ -46,19 +46,19 @@ ensure_newline_before_comments = true
 line_length = 88
 # Only target script directories
 src_paths = [
-    "../archive_templates",
-    "../create_groups",
-    "../create_sites",
-    "../delete_actions",
-    "../delete_assets",
-    "../delete_sites",
-    "../export_asset_types",
-    "../export_template_access_rules",
-    "../fetch_issues",
-    "../get_public_issue_links",
-    "../get_sites_without_activity",
-    "../set_inspection_site",
-    "../update_user_sites"
+    "../scripts/archive_templates",
+    "../scripts/create_groups",
+    "../scripts/create_sites",
+    "../scripts/delete_actions",
+    "../scripts/delete_assets",
+    "../scripts/delete_sites",
+    "../scripts/export_asset_types",
+    "../scripts/export_template_access_rules",
+    "../scripts/fetch_issues",
+    "../scripts/get_public_issue_links",
+    "../scripts/get_sites_without_activity",
+    "../scripts/set_inspection_site",
+    "../scripts/update_user_sites"
 ]
 skip_glob = [
     "venv/*",
@@ -91,19 +91,19 @@ strict_equality = false
 explicit_package_bases = true
 # Only check script directories
 files = [
-    "../archive_templates",
-    "../create_groups",
-    "../create_sites",
-    "../delete_actions",
-    "../delete_assets",
-    "../delete_sites",
-    "../export_asset_types",
-    "../export_template_access_rules",
-    "../fetch_issues",
-    "../get_public_issue_links",
-    "../get_sites_without_activity",
-    "../set_inspection_site",
-    "../update_user_sites"
+    "../scripts/archive_templates",
+    "../scripts/create_groups",
+    "../scripts/create_sites",
+    "../scripts/delete_actions",
+    "../scripts/delete_assets",
+    "../scripts/delete_sites",
+    "../scripts/export_asset_types",
+    "../scripts/export_template_access_rules",
+    "../scripts/fetch_issues",
+    "../scripts/get_public_issue_links",
+    "../scripts/get_sites_without_activity",
+    "../scripts/set_inspection_site",
+    "../scripts/update_user_sites"
 ]
 exclude = [
     'venv/',
