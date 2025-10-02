@@ -4,7 +4,7 @@ Exports all permission assignments for SafetyCulture templates via API. Fetches 
 
 ## Quick Start
 
-1. **Install dependencies**: `pip install requests`
+1. **Install dependencies**: `pip install -r ../requirements.txt`
 2. **Set API token**: Replace `TOKEN = ''` in `main.py` with your SafetyCulture API token
 3. **Run script**: `python main.py`
 4. **Check output**: Find `template_access_rules.csv` file
